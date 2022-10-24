@@ -1,0 +1,4 @@
+node_modules/
+dist/
+.eslintrc
+env.d.ts

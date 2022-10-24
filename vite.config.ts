@@ -7,7 +7,16 @@ import eslint from 'vite-plugin-eslint'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [ react(), checker({ typescript: true }), eslint({}) ],
+  plugins: [
+    react(),
+    checker({
+      typescript: true,
+      eslint: {
+        lintCommand: 'eslint "./src/**/*.{ts,tsx}"'
+      },
+    }),
+    eslint({})
+  ],
   css: {
     modules: {
       localsConvention: 'camelCaseOnly'

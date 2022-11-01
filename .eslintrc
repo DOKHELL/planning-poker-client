@@ -3,7 +3,7 @@
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:import/recommended",
-    "plugin:jsx-a11y/recommended",
+//    "plugin:jsx-a11y/recommended",
     "plugin:@typescript-eslint/recommended"
   ],
   "settings": {
@@ -25,6 +25,10 @@
     }
   },
   "rules": {
+    "@typescript-eslint/no-explicit-any": ["off"],
+    "@typescript-eslint/no-empty-interface": "off",
+    "@typescript-eslint/ban-ts-comment": "off",
+    "import/named": "off",
     "semi": [
       "error",
       "never"

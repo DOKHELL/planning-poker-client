@@ -1,0 +1,64 @@
+.filterWrapper {
+  width: calc(100% + 8px);
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 8px;
+
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-column-gap: 16px
+  }
+
+  @media screen and (max-width: 480px) {
+    grid-template-columns: 1fr;
+    justify-items: center
+  }
+}
+
+.filtersContainer {
+  background: #F1F3F4;
+  padding: 24px 16px 16px;
+  border-radius: 8px;
+  border: 1px solid #E9EDF3;
+  border-top: unset;
+}
+
+.filter {
+  display: flex;
+  flex-direction: column;
+  width: 260px;
+  margin-right: 16px;
+  margin-left: 0;
+  margin-bottom: 24px;
+
+  &:last-child {
+    margin-right: 0;
+    margin-left: 0;
+  }
+
+  @media screen and (max-width: 480px) {
+    max-width: 334px;
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+  }
+}
+
+.clearWrapper {
+  margin-top: 0;
+}
+
+.clearBtn {
+  background: #4b4d70;
+  color: white;
+  height: 48px;
+  text-transform: none;
+  border-radius: 8px;
+  width: 200px;
+
+  &:hover {
+    background: #535bf2;
+  }
+}

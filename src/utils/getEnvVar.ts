@@ -1,0 +1,1 @@
+export default (variable: string) => window?._config?.[variable] || import.meta.env[variable]

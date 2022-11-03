@@ -10,13 +10,16 @@ import { useNavigate } from 'react-router-dom'
 const UserList = () => {
   const navigate = useNavigate()
   const { pageSize, currentPage } = useUsers()
-  const { data, isFetching } = useListUser({ pageSize, currentPage })
-  console.log(data)
+  const { data, isFetching, error } = useListUser({ pageSize, currentPage })
   const keys = Object.keys(data?.users?.length ? data.users[0] : [])
   const filterKeys = keys.filter(i => i !== 'address' && i !== 'company')
 
   const handleRedirect = (id: string) => () => {
     navigate(USER_DETAILS(id))
+  }
+
+  if (error) {
+    return <div>Error</div>
   }
 
   return (
@@ -32,7 +35,7 @@ const UserList = () => {
       </thead>
       <tbody className={styles.tbody}>
         <>
-          {isFetching && <BlockLoader/>}
+          {isFetching && <tr><td><BlockLoader/></td></tr>}
           {data && !!data.users.length ? data.users.map((obj, index) => (
             <tr className={styles.trBody} key={index}>
               {!!filterKeys.length && filterKeys.map((item: string, index: number) => {
@@ -45,7 +48,7 @@ const UserList = () => {
                 )
               })}
             </tr>
-          )) : <td className={styles.td}>No Found</td>}
+          )) : <tr><td className={styles.td}>No Found</td></tr>}
         </>
       </tbody>
     </table>

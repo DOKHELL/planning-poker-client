@@ -1,6 +1,7 @@
+// TODO: wrap with folder
 import React from 'react'
 import reactLogo from '../assets/react.svg'
-import { Outlet, useNavigate } from 'react-router-dom'
+import { NavLink, Outlet, useNavigate } from 'react-router-dom'
 import { HOME, USERS } from '../constants/routes'
 import styles from './Layout.module.scss'
 import Header from '../components/Header/Header'
@@ -13,6 +14,8 @@ const Layout = () => {
   const handleRedirect = (url: string) => () => {
     navigate(url)
   }
+
+  // TODO: use NavLink from react router
 
   return (
     <>

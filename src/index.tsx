@@ -9,9 +9,13 @@ import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 const client = new QueryClient({
   defaultOptions: {
     queries: {
-      refetchOnWindowFocus: false,
+      refetchOnWindowFocus: false, // TODO: disable for dev env
       refetchOnMount: false,
       retry: false,
+      // retry: (failureCount, error) => {
+      //   const err = error as ServerError
+      //   if (err.status && err.status >= 500) return true
+      // },
     }
   }
 })

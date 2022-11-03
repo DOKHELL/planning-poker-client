@@ -1,3 +1,4 @@
+// TODO: close to index.tsx
 import { lazy, Suspense } from 'react'
 import { Navigate, Route, Routes } from 'react-router-dom'
 import Layout from './Layout'
@@ -12,6 +13,7 @@ const UserDetails = lazy(() => import('../pages/UserDetails/UserDetails'))
 
 export const App = () => {
   return (
+    // TODO: remove all wrappers and styles, should be routes only
     <div className={styles.app}>
       <Suspense fallback={<PageLoader/>}>
         <Routes>

@@ -2,6 +2,7 @@
   display: flex;
   list-style-type: none;
 
+  // TODO: avoid nested selectors
   .paginationItem {
     padding: 0 12px;
     height: 32px;

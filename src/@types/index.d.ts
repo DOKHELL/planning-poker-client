@@ -1,5 +1,6 @@
 export {}
 
+// TODO: remove
 declare global {
   interface Window {
     _config: any

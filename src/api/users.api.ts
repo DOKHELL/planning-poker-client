@@ -12,11 +12,13 @@ export type User = {
   website: string
 }
 
+// TODO: move to general types /@types/error.ts
 export type ErrorResponse = {
   status: string
   message: string
 }
 
+// TODO: move to general utils /utils/error.ts
 const getError = (e: unknown): ErrorResponse => {
   const err = e as AxiosError
   return {
@@ -25,6 +27,7 @@ const getError = (e: unknown): ErrorResponse => {
   }
 }
 
+// TODO: move to general utils /@types/index.ts
 export type Meta = {
   currentPage: number
   pageSize: number
@@ -59,19 +62,23 @@ export type ListUserArgs = {
   filters?: string
 }
 
-
+// TODO: avoid carring
 export const listUser = (args: ListUserArgs) => async (): Promise<any> => {
   try {
     const { currentPage, pageSize, filters } = args
     const response = await api.get(GET_USERS(currentPage, pageSize, filters))
 
+    // TODO: move to react-query level
     return convertResponse(response, currentPage, pageSize)
   }
   catch (e) {
-    return getError(e)
+    // TODO: handle on axios interception level
+    throw getError(e)
   }
 }
 
+// TODO: make simple
+// export const findUser = (id: string) => (api.get<User>(`/users/${id}`))
 export const findUser = (id: string) => async () => {
   try {
     const { data } = await api.get(GET_USER(id))
@@ -79,6 +86,6 @@ export const findUser = (id: string) => async () => {
     return data
   }
   catch (e) {
-    return getError(e)
+    throw getError(e)
   }
 }

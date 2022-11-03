@@ -1,3 +1,4 @@
+// TODO: rename to user.api.ts
 import api from '../services/axios'
 import { GET_USER, GET_USERS } from '../constants/api'
 import { AxiosError, AxiosResponse } from 'axios'

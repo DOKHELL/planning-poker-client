@@ -1,3 +1,4 @@
+// TODO: rename to user.store.ts
 import create from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { Filter } from '../utils/filtersSerializer'
@@ -33,7 +34,7 @@ export const useUsers = create<IUsersStore>()(devtools(
     pageSize: 10,
     setPageSize: (value: number) => set({ pageSize: value }, false, 'useUsers/setPageSize'),
     filters: initialFilters,
-    setFilters: (filters: Filter) => set( { filters: filters, currentPage: 1 }, false, 'useUsers/setFilters')
+    setFilters: (filters: Filter) => set( { filters: filters, currentPage: 1 }, false, 'useUsers/setFilters'),
   }),
   {
     name: 'users'

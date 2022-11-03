@@ -1,14 +1,16 @@
 import React  from 'react'
+import shallow from 'zustand/shallow'
 import FiltersWrapper from '../../../components/FiltersWrapper/FiltersWrapper'
 import Input from '../../../components/Input/Input'
 import { useUsers, initialFilters } from '../../../store/users.store'
 
 
 const UserFilters = () => {
-  const { filters, setFilters } = useUsers()
+  const { filters, setFilters } = useUsers((state => ({ filters: state.filters, setFilters: state.setFilters })), shallow)
 
   const handleFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
+    // TODO: move to store
     setFilters({
       ...filters,
       [name]: {

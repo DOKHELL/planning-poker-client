@@ -11,7 +11,7 @@ export const filtersSerializer = (filters: Filter) => {
   for (const [ key, value ] of Object.entries(filters)) {
     const field = key.split(/(?=[A-Z])/).join('_').toLowerCase()
     if (typeof value.value === 'object' && value.value !== null) {
-      for (const [ key1, value1 ] of Object.entries(value.value)) {
+      for (const value1 of Object.values(value.value)) {
         stringifiedFilters += value1 ? '&' + field + '=' + value1 : ''
       }
     } else {

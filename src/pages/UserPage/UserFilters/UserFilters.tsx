@@ -1,27 +1,20 @@
 import React  from 'react'
-import shallow from 'zustand/shallow'
 import FiltersWrapper from '../../../components/FiltersWrapper/FiltersWrapper'
 import Input from '../../../components/Input/Input'
-import { useUsers, initialFilters } from '../../../store/users.store'
+import { addUserFilters, userStore, resetUserFilters } from '../../../store/user.store'
+import { useSnapshot } from 'valtio'
 
 
 const UserFilters = () => {
-  const { filters, setFilters } = useUsers((state => ({ filters: state.filters, setFilters: state.setFilters })), shallow)
+  const { filters } = useSnapshot(userStore)
 
   const handleFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    // TODO: move to store
-    setFilters({
-      ...filters,
-      [name]: {
-        ...filters[name],
-        value,
-      }
-    })
+    addUserFilters(name, value)
   }
 
   const handleResetFilters = () => {
-    setFilters(initialFilters)
+    resetUserFilters()
   }
 
   return (

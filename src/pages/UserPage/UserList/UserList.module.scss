@@ -1,4 +1,4 @@
-@import '../src/variabless';
+@import '../../../assets/styles/variabless';
 
 .table {
   width: 100%;
@@ -6,45 +6,48 @@
   text-align: center;
   border-radius: $border-radius;
   overflow: hidden;
+}
 
-  .thead {
-    position: sticky;
-    z-index: 100;
+.thead {
+  position: sticky;
+  z-index: 100;
+}
 
-    .trHead {
-      background: $bg;
+.tbody {
+  position: relative;
+}
 
-      .th {
-        padding: $sm-spacing;
-        color: $text;
-        text-transform: capitalize;
-        font-weight: 600;
-        font-size: 14px;
+.trBody {
+  background: $white;
+  &:hover {
+    cursor: pointer;
+    background: #4b4d70;
+  }
+}
 
-        &:not(:last-of-type) {
-          border-right: 1px solid $bg2;
-        }
-        &:first-of-type {
-          width: 1%;
-          white-space: nowrap;
-        }
-      }
-    }
+.trHead {
+  background: $bg;
+}
+
+.th {
+  padding: $sm-spacing;
+  color: $text;
+  text-transform: capitalize;
+  font-weight: 600;
+  font-size: 14px;
+
+  &:not(:last-of-type) {
+    border-right: 1px solid $bg2;
   }
 
-  .tbody {
-    position: relative;
-    .trBody {
-      background: $white;
-      &:hover {
-        cursor: pointer;
-        background: #4b4d70;
-      }
-      .td {
-        padding: $sm-spacing;
-        border: 1px solid $bg2;
-        font-size: 14px;
-      }
-    }
+  &:first-of-type {
+    width: 1%;
+    white-space: nowrap;
   }
+}
+
+.td {
+  padding: $sm-spacing;
+  border: 1px solid $bg2;
+  font-size: 14px;
 }

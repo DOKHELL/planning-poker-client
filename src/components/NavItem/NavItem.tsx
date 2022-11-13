@@ -1,18 +1,19 @@
 import React from 'react'
 import styles from './NavItem.module.scss'
+import { NavLink } from 'react-router-dom'
 
-export interface NavItemProps {
+type NavItemProps = {
   id: string
   name: string
-  onClick: () => void
   navKey: string
+  url: string
 }
 
 const NavItem = (props: NavItemProps) => {
-  const { id , name, navKey, onClick } = props
+  const { id , name, navKey, url } = props
 
   return (
-    <a className={styles.navItem} onClick={onClick} id={id} key={navKey}>{name}</a>
+    <NavLink to={url} key={navKey} className={styles.navItem} id={id}>{name}</NavLink>
   )
 }
 

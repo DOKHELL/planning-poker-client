@@ -1,2 +1,1 @@
-// TODO: enum or type for env variables
-export default (variable: string) => import.meta.env[variable]
+export default (variable: keyof ImportMetaEnv): string => `${import.meta.env[variable]}`

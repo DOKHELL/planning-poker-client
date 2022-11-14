@@ -3,6 +3,3 @@ export type Meta = {
   pageSize: number
   totalCount: number
 }
-
-export {}
-

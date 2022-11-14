@@ -14,10 +14,6 @@ const client = new QueryClient({
       refetchOnWindowFocus: getEnvVar('VITE_ENV') === 'production',
       refetchOnMount: false,
       retry: false,
-      // retry: (failureCount, error) => {
-      //   const err = error as ServerError
-      //   if (err.status && err.status >= 500) return true
-      // },
     }
   }
 })

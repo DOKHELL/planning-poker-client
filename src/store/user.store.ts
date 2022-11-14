@@ -39,6 +39,7 @@ export const addUserFilters = (name: string, value: string) => {
 }
 
 export const resetUserFilters = () => {
+  // TODO: use init func
   userStore.filters = cloneDeep(initialFilters)
 }
 

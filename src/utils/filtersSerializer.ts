@@ -1,6 +1,6 @@
 export type Filter = {
   [key: string]: {
-    value: any
+    value?: string | number
     action?: 'eq' | 'like' | 'from' | 'to' | ''
     title?: string
   }

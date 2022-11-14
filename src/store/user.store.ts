@@ -1,9 +1,8 @@
 import { proxy } from 'valtio'
 import { devtools } from 'valtio/utils'
 import { Filter } from '../utils/filtersSerializer'
-import { cloneDeep } from 'lodash'
 
-export const initialFilters: Filter = {
+export const initFilters = (): Filter => ({
   name: {
     value: '',
     action: 'like',
@@ -12,7 +11,7 @@ export const initialFilters: Filter = {
     value: '',
     action: 'like',
   }
-}
+})
 
 export type UserStore = {
   currentPage: number
@@ -23,7 +22,7 @@ export type UserStore = {
 export const userStore = proxy<UserStore>({
   currentPage: 1,
   pageSize: 9,
-  filters: initialFilters,
+  filters: initFilters(),
 })
 
 export const setPageSize = (pageSize: number) => {
@@ -39,8 +38,7 @@ export const addUserFilters = (name: string, value: string) => {
 }
 
 export const resetUserFilters = () => {
-  // TODO: use init func
-  userStore.filters = cloneDeep(initialFilters)
+  userStore.filters = initFilters()
 }
 
 devtools(userStore, { name: 'userStore', enabled: true })

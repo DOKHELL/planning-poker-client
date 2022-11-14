@@ -3,7 +3,6 @@ lockfileVersion: 5.4
 specifiers:
   '@tanstack/react-query': ^4.13.0
   '@tanstack/react-query-devtools': ^4.13.0
-  '@types/lodash': ^4.14.188
   '@types/node': ^18.11.4
   '@types/react': ^18.0.17
   '@types/react-dom': ^18.0.6
@@ -18,7 +17,6 @@ specifiers:
   eslint-plugin-jsx-a11y: ^6.6.1
   eslint-plugin-react: ^7.31.10
   json-server: ^0.17.0
-  lodash: ^4.17.21
   postcss: ^8.4.18
   postcss-rtlcss: ^4.0.1
   react: ^18.2.0
@@ -43,7 +41,6 @@ dependencies:
 
 devDependencies:
   '@tanstack/react-query-devtools': 4.13.0_vwr3yfyniquaygdm2roeczqxuu
-  '@types/lodash': 4.14.188
   '@types/node': 18.11.9
   '@types/react': 18.0.21
   '@types/react-dom': 18.0.6
@@ -57,7 +54,6 @@ devDependencies:
   eslint-plugin-jsx-a11y: 6.6.1_eslint@8.26.0
   eslint-plugin-react: 7.31.10_eslint@8.26.0
   json-server: 0.17.0
-  lodash: 4.17.21
   postcss: 8.4.18
   postcss-rtlcss: 4.0.1_postcss@8.4.18
   sass: 1.55.0
@@ -556,10 +552,6 @@ packages:
     resolution: {integrity: sha512-BQ5aZNSCpj7D6K2ksrRCTmKRLEpnPvWDiLPfoGyhZ++8YtiK9d/3DBKPJgry359X/P1PfruyYwvnvwFjuEiEIg==}
     dependencies:
       '@types/node': 18.11.9
-    dev: true
-
-  /@types/lodash/4.14.188:
-    resolution: {integrity: sha512-zmEmF5OIM3rb7SbLCFYoQhO4dGt2FRM9AMkxvA3LaADOF1n8in/zGJlWji9fmafLoNyz+FoL6FE0SLtGIArD7w==}
     dev: true
 
   /@types/node/18.11.9:

@@ -2,20 +2,12 @@ import React from 'react'
 import Pagination from '../../../components/Pagination/Pagination'
 import styles from './UserPagination.module.scss'
 import { useListUser } from '../../../hooks/queries/user.query'
-import { filtersSerializer } from '../../../utils/filtersSerializer'
+import { setPageSize, setCurrentPage, userStore } from '../../../store/user.store'
 import { useSnapshot } from 'valtio'
-import { userStore, setPageSize, setCurrentPage } from '../../../store/user.store'
-import useDebounce from '../../../hooks/useDebounce'
 
 const UserPagination = () => {
-  const { pageSize, currentPage, filters } = useSnapshot(userStore)
-  const debouncedFilters = useDebounce(filters, 700)
-  const { data } = useListUser({
-    pageSize,
-    currentPage,
-    filters: filtersSerializer(debouncedFilters)
-  })
-
+  const { pageSize, currentPage } = useSnapshot(userStore)
+  const { data } = useListUser()
   const total = data?.meta?.totalCount
 
   const handlePagination = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -26,8 +18,8 @@ const UserPagination = () => {
   return (
     <div className={styles.wrapper}>
       <select name="pageSize" id="pageSize" value={pageSize} onChange={handlePagination} className={styles.pageSize}>
-        <option value='10'>10</option>
-        <option value='20'>20</option>
+        <option value='9'>9</option>
+        <option value='15'>15</option>
         <option value='30'>30</option>
       </select>
       {!!total && total > pageSize && <Pagination

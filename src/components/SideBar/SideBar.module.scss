@@ -1,0 +1,15 @@
+.sidebar {
+  width: 240px;
+  background: #4b4d70;
+}
+
+.sidebarBody {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: auto;
+
+  &::-webkit-scrollbar {
+    width: 0;
+  }
+}

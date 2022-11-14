@@ -1,32 +1,30 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import './App.scss'
+import { lazy, Suspense } from 'react'
+import { Navigate, Route, Routes } from 'react-router-dom'
+import Layout from './containers/Layout/Layout'
+import { DASHBOARD, HOME, NOT_FOUND, USERS } from './constants/routes'
+import PageLoader from './components/PageLoader/PageLoader'
+import setupAxiosInterceptors from './services/interceptors'
 
-function App() {
-  const [ count, setCount ] = useState(0)
+const DashboardPage = lazy(() => import('./pages/DashboardPage/DashboardPage'))
+const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'))
+const UserPage = lazy(() => import('./pages/UserPage/UserPage'))
+const UserDetails = lazy(() => import('./pages/UserDetails/UserDetails'))
+
+export const App = () => {
+  setupAxiosInterceptors()
   return (
-    <div className="App">
-      <div>
-        <a href="https://vitejs.dev" target="_blank" rel="noreferrer">
-          <img src="/vite.svg" className='logo' alt="Vite logo"/>
-        </a>
-        <a href="https://reactjs.org" target="_blank" rel="noreferrer">
-          <img src={reactLogo} className='logo react' alt="React logo"/>
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className='card'>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className='read-the-docs'>
-        Click on the Vite and React logos to learn more
-      </p>
-    </div>
+    <Suspense fallback={<PageLoader/>}>
+      <Routes>
+        <Route path={HOME} element={<Layout/>}>
+          <Route path={DASHBOARD} element={<DashboardPage/>}/>
+          <Route path={NOT_FOUND} element={<NotFoundPage/>}/>
+          <Route path={USERS} element={<UserPage/>}/>
+          <Route path={`${USERS}/:id`} element={<UserDetails/>}/>
+          <Route path={HOME} element={<Navigate to={DASHBOARD}/>}/>
+          <Route path='*' element={<Navigate to={NOT_FOUND}/>}/>
+        </Route>
+      </Routes>
+    </Suspense>
   )
 }
 

@@ -1,0 +1,9 @@
+.navItem {
+  color: white;
+  padding: 16px 24px;
+  cursor: pointer;
+  text-decoration: none;
+  &:hover {
+    color: darkgrey;
+  }
+}

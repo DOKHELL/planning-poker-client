@@ -1,6 +1,7 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
 import { useFindUser } from '../../hooks/queries/user.query'
+import styles from './UserDetails.module.scss'
 
 const UserDetails = () => {
   const { id } = useParams<{ id: string }>()
@@ -10,13 +11,32 @@ const UserDetails = () => {
 
   return (
     <>
-      <div>
-        <p>{user.id}</p>
-        <p>{user.name}</p>
-        <p>{user.email}</p>
-        <p>{user.phone}</p>
-        <p>{user.username}</p>
-        <p>{user.website}</p>
+      <h2 className={styles.title}>User Details</h2>
+      <div className={styles.wrapper}>
+        <div className={styles.item}>
+          <h3 className={styles.itemTitle}>ID</h3>
+          <p className={styles.itemText}>{user.id}</p>
+        </div>
+        <div className={styles.item}>
+          <h3 className={styles.itemTitle}>Name</h3>
+          <p className={styles.itemText}>{user.name}</p>
+        </div>
+        <div className={styles.item}>
+          <h3 className={styles.itemTitle}>Email</h3>
+          <p className={styles.itemText}>{user.email}</p>
+        </div>
+        <div className={styles.item}>
+          <h3 className={styles.itemTitle}>Phone</h3>
+          <p className={styles.itemText}>{user.phone}</p>
+        </div>
+        <div className={styles.item}>
+          <h3 className={styles.itemTitle}>Username</h3>
+          <p className={styles.itemText}>{user.username}</p>
+        </div>
+        <div className={styles.item}>
+          <h3 className={styles.itemTitle}>Website</h3>
+          <p className={styles.itemText}>{user.website}</p>
+        </div>
       </div>
     </>
   )

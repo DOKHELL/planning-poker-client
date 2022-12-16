@@ -5,7 +5,7 @@ import { userStore, resetUserFilters, setUserFilters } from '../../../store/user
 import { useSnapshot } from 'valtio'
 
 
-const UserFilters = () => {
+const Filters = () => {
   const { filters } = useSnapshot(userStore)
 
   const handleFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -43,4 +43,4 @@ const UserFilters = () => {
   )
 }
 
-export default UserFilters
+export default Filters

@@ -1,11 +1,11 @@
 import React from 'react'
-import Pagination from '../../../components/Pagination/Pagination'
-import styles from './UserPagination.module.scss'
+import ShaderPagination from '../../../components/Pagination/Pagination'
+import styles from './Pagination.module.scss'
 import { useListUser } from '../../../hooks/queries/user.query'
 import { setPageSize, setCurrentPage, userStore } from '../../../store/user.store'
 import { useSnapshot } from 'valtio'
 
-const UserPagination = () => {
+const Pagination = () => {
   const { pageSize, currentPage } = useSnapshot(userStore)
   const { data } = useListUser()
   const total = data?.meta?.totalCount
@@ -22,7 +22,7 @@ const UserPagination = () => {
         <option value='15'>15</option>
         <option value='30'>30</option>
       </select>
-      {!!total && total > pageSize && <Pagination
+      {!!total && total > pageSize && <ShaderPagination
         className={styles.userPagination}
         currentPage={currentPage}
         totalCount={total}
@@ -33,4 +33,4 @@ const UserPagination = () => {
   )
 }
 
-export default UserPagination
+export default Pagination

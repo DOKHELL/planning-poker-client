@@ -1,0 +1,20 @@
+@import '../../assets/styles/variabless';
+
+.backButton {
+  padding: 0;
+  color: $greenDark;
+  text-transform: unset;
+  margin-bottom: 16px;
+  border: none;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+
+  &:hover {
+    background: transparent;
+  }
+}
+
+.icon {
+  margin-right: 8px;
+}

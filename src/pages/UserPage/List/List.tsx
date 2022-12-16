@@ -1,11 +1,11 @@
 import React from 'react'
-import styles from './UserList.module.scss'
+import styles from './List.module.scss'
 import { useListUser } from '../../../hooks/queries/user.query'
 import BlockLoader from '../../../components/BlockLoader/BlockLoader'
 import { USER_DETAILS } from '../../../constants/routes'
 import { useNavigate } from 'react-router-dom'
 
-const UserList = () => {
+const List = () => {
   const navigate = useNavigate()
   const { data, isFetching, error } = useListUser()
   const keys = Object.keys(data?.users?.length ? data.users[0] : [])
@@ -51,4 +51,4 @@ const UserList = () => {
   )
 }
 
-export default UserList
+export default List

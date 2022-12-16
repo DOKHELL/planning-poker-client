@@ -1,0 +1,40 @@
+@import '../../assets/styles/variabless';
+
+.wrapper {
+  padding: 32px;
+  background: $white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 24px;
+  margin-bottom: 24px;
+}
+
+.textWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.title {
+  font-size: 18px;
+  color: $primary;
+}
+
+.text {
+  font-size: 14px;
+}
+
+.button {
+  background: #4b4d70;
+  color: white;
+  height: 48px;
+  text-transform: none;
+  border-radius: 8px;
+  width: 200px;
+  cursor: pointer;
+
+  &:hover {
+    background: #535bf2;
+  }
+}

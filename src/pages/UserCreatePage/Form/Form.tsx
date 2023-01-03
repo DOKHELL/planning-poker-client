@@ -29,7 +29,7 @@ const Form = () => {
   })
   const queryClient = useQueryClient()
   const onSuccess = async () => {
-    await queryClient.invalidateQueries({ queryKey: [ 'listUser' ] })
+    await queryClient.refetchQueries({ queryKey: [ 'listUser' ] })
     handlePush(USERS)
   }
 

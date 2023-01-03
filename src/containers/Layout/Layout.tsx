@@ -9,7 +9,7 @@ import NavItem from '../../components/NavItem/NavItem'
 
 const Layout = () => {
   return (
-    <div>
+    <div className={styles.app}>
       <Header>
         <img src={reactLogo} alt=""/>
       </Header>

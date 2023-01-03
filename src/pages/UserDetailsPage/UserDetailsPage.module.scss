@@ -10,12 +10,14 @@
 
   @media screen and (max-width: 1050px) {
       grid-template-columns: 1fr 1fr;
+      column-gap: 24px;
       row-gap: 24px;
   }
 
-  @media screen and (max-width: 500px) {
+  @media screen and (max-width: 700px) {
     grid-template-columns: 1fr;
-    row-gap: 24px;
+    column-gap: 16px;
+    row-gap: 16px;
   }
 }
 

@@ -1,7 +1,7 @@
 import React  from 'react'
-import FiltersWrapper from '../../../components/FiltersWrapper/FiltersWrapper'
-import Input from '../../../components/Input/Input'
-import { userStore, resetUserFilters, setUserFilters } from '../../../store/user.store'
+import FiltersWrapper from '../../../../components/FiltersWrapper/FiltersWrapper'
+import Input from '../../../../components/Input/Input'
+import { userStore, resetUserFilters, setUserFilters } from '../../../../store/user.store'
 import { useSnapshot } from 'valtio'
 
 

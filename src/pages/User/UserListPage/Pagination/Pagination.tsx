@@ -1,8 +1,8 @@
 import React from 'react'
-import ShaderPagination from '../../../components/Pagination/Pagination'
+import ShaderPagination from '../../../../components/Pagination/Pagination'
 import styles from './Pagination.module.scss'
-import { useListUser } from '../../../hooks/queries/user.query'
-import { setPageSize, setCurrentPage, userStore } from '../../../store/user.store'
+import { useListUser } from '../../../../hooks/queries/user.query'
+import { setPageSize, setCurrentPage, userStore } from '../../../../store/user.store'
 import { useSnapshot } from 'valtio'
 
 const Pagination = () => {

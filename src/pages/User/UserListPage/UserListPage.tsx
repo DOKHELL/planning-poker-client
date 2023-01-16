@@ -2,13 +2,13 @@ import React  from 'react'
 import Filters from './Filters/Filters'
 import List from './List/List'
 import Pagination from './Pagination/Pagination'
-import Title from '../../components/Title/Title'
-import Block from '../../components/Block/Block'
-import { USER_CREATE } from '../../constants/routes'
-import useHandlePush from '../../hooks/useNavigation'
-import Warning from '../../components/Warning/Warning'
+import Title from '../../../components/Title/Title'
+import Block from '../../../components/Block/Block'
+import { USER_CREATE } from '../../../constants/routes'
+import useHandlePush from '../../../hooks/useNavigation'
+import Warning from '../../../components/Warning/Warning'
 
-const UserPage = () => {
+const UserListPage = () => {
   const { handlePushAutoCall } = useHandlePush()
 
   return (
@@ -25,4 +25,4 @@ const UserPage = () => {
   )
 }
 
-export default UserPage
+export default UserListPage

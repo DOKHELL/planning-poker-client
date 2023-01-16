@@ -2,9 +2,9 @@ import React from 'react'
 import Loader from '../Loader/Loader'
 import styles from './PageLoader.module.scss'
 
-const PageLoader = () => {
+const PageLoader = ({ opacity = 1 }: { opacity?: number }) => {
   return (
-    <div className={styles.pageLoader}>
+    <div style={{ opacity }} className={styles.pageLoader}>
       <Loader/>
     </div>
   )

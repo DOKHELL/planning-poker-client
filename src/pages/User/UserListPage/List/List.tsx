@@ -1,8 +1,8 @@
 import React from 'react'
 import styles from './List.module.scss'
-import { useListUser } from '../../../hooks/queries/user.query'
-import BlockLoader from '../../../components/BlockLoader/BlockLoader'
-import { USER_DETAILS } from '../../../constants/routes'
+import { useListUser } from '../../../../hooks/queries/user.query'
+import BlockLoader from '../../../../components/BlockLoader/BlockLoader'
+import { USER_DETAILS } from '../../../../constants/routes'
 import { useNavigate } from 'react-router-dom'
 
 const List = () => {

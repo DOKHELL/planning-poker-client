@@ -1,18 +1,19 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useFindUser } from '../../hooks/queries/user.query'
+import { useFindUser } from '../../../hooks/queries/user.query'
 import styles from './UserDetailsPage.module.scss'
-import Title from '../../components/Title/Title'
-import Block from '../../components/Block/Block'
-import BackButton from '../../components/BackButton/BackButton'
-import { USERS } from '../../constants/routes'
-import useHandlePush from '../../hooks/useNavigation'
+import Title from '../../../components/Title/Title'
+import Block from '../../../components/Block/Block'
+import BackButton from '../../../components/BackButton/BackButton'
+import { USERS } from '../../../constants/routes'
+import useHandlePush from '../../../hooks/useNavigation'
+import PageLoader from '../../../components/PageLoader/PageLoader'
 
 const UserDetailsPage = () => {
   const { handlePushAutoCall } = useHandlePush()
   const { id } = useParams<{ id: string }>()
   const { data: user, isLoading, isError, error } = useFindUser(id || '')
-  if(isLoading) return <div>Loading...</div>
+  if(isLoading) return <PageLoader/>
   if(isError) return <div>Error: {error.message}</div>
 
   return (

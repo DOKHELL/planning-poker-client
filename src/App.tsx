@@ -10,6 +10,7 @@ const NotFoundPage = lazy(() => import('./pages/NotFoundPage/NotFoundPage'))
 const UserListPage = lazy(() => import('./pages/User/UserListPage/UserListPage'))
 const UserDetailsPage = lazy(() => import('./pages/User/UserDetailsPage/UserDetailsPage'))
 const UserCreatePage = lazy(() => import('./pages/User/UserCreatePage/UserCreatePage'))
+const UserEditPage = lazy(() => import('./pages/User/UserEditPage/UserEditPage'))
 
 export const App = () => {
   setupAxiosInterceptors()
@@ -22,6 +23,7 @@ export const App = () => {
           <Route path={USERS} element={<UserListPage/>}/>
           <Route path={USER_CREATE} element={<UserCreatePage/>}/>
           <Route path={`${USERS}/:id`} element={<UserDetailsPage/>}/>
+          <Route path={`${USERS}/:id/edit`} element={<UserEditPage/>}/>
           <Route path={HOME} element={<Navigate to={DASHBOARD}/>}/>
           <Route path='*' element={<Navigate to={NOT_FOUND}/>}/>
         </Route>

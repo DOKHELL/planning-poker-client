@@ -7,13 +7,14 @@ type NavItemProps = {
   name: string
   navKey: string
   url: string
+  onClick?: () => void
 }
 
 const NavItem = (props: NavItemProps) => {
-  const { id , name, navKey, url } = props
+  const { id , name, navKey, url, onClick = () => undefined } = props
 
   return (
-    <NavLink to={url} key={navKey} className={styles.navItem} id={id}>{name}</NavLink>
+    <NavLink to={url} key={navKey} className={styles.navItem} id={id} onClick={onClick}>{name}</NavLink>
   )
 }
 

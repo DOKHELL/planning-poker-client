@@ -1,10 +1,10 @@
 import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import useNavigation from '../../../../hooks/useNavigation'
+import useNavigation from '@/hooks/useNavigation'
 import { useQueryClient } from '@tanstack/react-query'
-import { USERS } from '../../../../constants/routes'
-import { useCreateUser } from '../../../../hooks/mutations/user.mutation'
-import PageLoader from '../../../../components/PageLoader/PageLoader'
+import { USERS } from '@/constants/routes'
+import { useCreateUser } from '@/hooks/mutations/user.mutation'
+import PageLoader from '@/components/PageLoader/PageLoader'
 import Form from '../../Form/Form'
 import styles from './UserCreateForm.module.scss'
 
@@ -37,7 +37,7 @@ const UserCreateForm = () => {
   const { mutate, isLoading } = useCreateUser({ onSuccess })
 
   const handleCreate = (data: FormValues) => {
-    mutate(data as unknown as void)
+    mutate(data)
   }
 
   return (

@@ -1,6 +1,6 @@
-import api from '../services/axios'
+import api from '@/services/axios'
 import { AxiosResponse } from 'axios'
-import { Meta } from '../@types'
+import { Meta } from '@/@types'
 
 export type User = {
   id: string
@@ -57,4 +57,12 @@ export type CreateUserArgs = {
 }
 export const createUser = async (data: CreateUserArgs) => {
   return api.post<User>('/users', data).then(res => res.data)
+}
+
+export type UpdateUserArgs = Partial<CreateUserArgs> & {
+  id: string
+}
+
+export const updateUser = async (data: UpdateUserArgs) => {
+  return api.patch<User>(`/users/${data.id}`, data).then(res => res.data)
 }

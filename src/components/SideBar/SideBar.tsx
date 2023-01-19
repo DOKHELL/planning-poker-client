@@ -1,18 +1,25 @@
 import React from 'react'
 import styles from './SideBar.module.scss'
+import classNames from 'classnames'
 
 export interface SideBarProps {
   children?: React.ReactNode
+  open: boolean
+  onClose: () => void
 }
 
 const SideBar = (props: SideBarProps) => {
-  const { children } = props
+  const { children, open, onClose } = props
+
   return (
-    <nav className={styles.sidebar}>
-      <div className={styles.sidebarBody}>
-        {children}
-      </div>
-    </nav>
+    <>
+      {open && <div className={styles.overlay} onClick={onClose}/>}
+      <nav className={classNames(styles.sidebar, { [styles.active]: open }) }>
+        <div className={styles.sidebarBody}>
+          {children}
+        </div>
+      </nav>
+    </>
   )
 }
 

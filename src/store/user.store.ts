@@ -1,6 +1,6 @@
 import { proxy } from 'valtio'
 import { devtools } from 'valtio/utils'
-import { Filter } from '../utils/filtersSerializer'
+import { Filter } from '@/utils/filtersSerializer'
 
 export const initFilters = (): Filter => ({
   name: {

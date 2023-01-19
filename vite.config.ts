@@ -3,10 +3,13 @@ import react from '@vitejs/plugin-react'
 import postcssRTL from 'postcss-rtlcss'
 import autoprefixer from 'autoprefixer'
 import { checker } from 'vite-plugin-checker'
-import eslint from 'vite-plugin-eslint'
+import * as path from 'path'
 
 // https://vitejs.dev/config/
 export default defineConfig({
+  resolve: {
+    alias: [{ find: '@', replacement: path.resolve(__dirname, 'src') }],
+  },
   plugins: [
     react(),
     checker({
@@ -14,8 +17,7 @@ export default defineConfig({
       eslint: {
         lintCommand: 'eslint "./src/**/*.{ts,tsx}"'
       },
-    }),
-    eslint({})
+    })
   ],
   css: {
     modules: {

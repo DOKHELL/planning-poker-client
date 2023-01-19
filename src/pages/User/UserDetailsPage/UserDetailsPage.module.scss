@@ -37,3 +37,11 @@
   border-radius: 6px;
   padding: 16px;
 }
+
+.icon {
+  transition: 0.3s all ease-in;
+  &:hover {
+    cursor: pointer;
+    transform: scale(1.5)
+  }
+}

@@ -1,6 +1,6 @@
 import React from 'react'
 import { useFormContext } from 'react-hook-form'
-import Input from '../../../components/Input/Input'
+import Input from '@/components/Input/Input'
 import styles from './Form.module.scss'
 
 type FormProps = {

@@ -1,13 +1,14 @@
 import React from 'react'
 import { useParams } from 'react-router-dom'
-import { useFindUser } from '../../../hooks/queries/user.query'
+import { useFindUser } from '@/hooks/queries/user.query'
 import styles from './UserDetailsPage.module.scss'
-import Title from '../../../components/Title/Title'
-import Block from '../../../components/Block/Block'
-import BackButton from '../../../components/BackButton/BackButton'
-import { USERS } from '../../../constants/routes'
-import useHandlePush from '../../../hooks/useNavigation'
-import PageLoader from '../../../components/PageLoader/PageLoader'
+import Title from '@/components/Title/Title'
+import Block from '@/components/Block/Block'
+import BackButton from '@/components/BackButton/BackButton'
+import { USERS, USER_EDIT } from '@/constants/routes'
+import useHandlePush from '@/hooks/useNavigation'
+import PageLoader from '@/components/PageLoader/PageLoader'
+import editIcon from '@/assets/icons/edit.svg'
 
 const UserDetailsPage = () => {
   const { handlePushAutoCall } = useHandlePush()
@@ -20,7 +21,9 @@ const UserDetailsPage = () => {
     <>
       <BackButton onBack={handlePushAutoCall(USERS)}/>
       <Block>
-        <Title title='User Details'/>
+        <Title title='User Details'>
+          <img className={styles.icon} src={editIcon} alt="edit" onClick={handlePushAutoCall(USER_EDIT(user.id))}/>
+        </Title>
         <div className={styles.wrapper}>
           <div className={styles.item}>
             <h3 className={styles.itemTitle}>ID</h3>

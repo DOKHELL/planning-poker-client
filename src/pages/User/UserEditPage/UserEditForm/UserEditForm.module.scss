@@ -1,0 +1,29 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  max-width: 333px;
+  margin-top: 40px;
+
+  @media screen and (max-width: 1050px) {
+    margin-top: 24px;
+  }
+
+  @media screen and (max-width: 700px) {
+    margin-top: 24px;
+  }
+}
+
+.button {
+  background: #4b4d70;
+  color: white;
+  height: 48px;
+  text-transform: none;
+  border-radius: 8px;
+  width: 100%;
+  cursor: pointer;
+
+  &:hover {
+    background: #535bf2;
+  }
+}

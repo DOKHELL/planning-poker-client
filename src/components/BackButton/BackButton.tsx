@@ -1,5 +1,5 @@
 import React from 'react'
-import BackArr from '../../assets/icons/back-arr.svg'
+import BackArr from '@/assets/icons/back-arr.svg'
 import styles from './BackButton.module.scss'
 
 interface BackButtonProps {

@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './Warning.module.scss'
+import Button from '@/components/Button/Button'
 
 interface WarningProps {
   title: string
@@ -17,9 +18,9 @@ const Warning = (props: WarningProps) => {
         {title && <h2 className={styles.title}>{title}</h2>}
         {text && <h3 className={styles.text}>{text}</h3>}
       </div>
-      <button className={styles.button} onClick={onClick}>
-        <h5>{buttonText}</h5>
-      </button>
+      <div className={styles.button}>
+        <Button text={buttonText} onClick={onClick}/>
+      </div>
     </div>
   )
 }

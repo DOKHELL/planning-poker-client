@@ -15,7 +15,7 @@
 .noFound {
   position: relative;
   grid-column-start: 1;
-  grid-column-end: 7;
+  grid-column-end: 8;
   text-align: center;
 }
 
@@ -27,6 +27,7 @@
   min-width: 100%;
   grid-template-columns:
   minmax(50px, 1fr)
+  minmax(100px, 1.67fr)
   minmax(100px, 1.67fr)
   minmax(100px, 1.67fr)
   minmax(100px, 1.67fr)
@@ -43,8 +44,8 @@
     display: contents;
     position: relative;
     &:hover > td:not(.noFound):not(.loader) {
-      cursor: pointer;
-      background: #4b4d70;
+      //cursor: pointer;
+      //background: #4b4d70;
     }
   }
 
@@ -73,5 +74,13 @@
   td {
     padding-top: 10px;
     padding-bottom: 10px;
+  }
+}
+
+.action {
+  display: flex;
+  gap: 8px;
+  & img:hover {
+    cursor: pointer;
   }
 }

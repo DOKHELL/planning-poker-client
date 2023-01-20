@@ -8,6 +8,8 @@ import Form from '../../Form/Form'
 import styles from './UserEditForm.module.scss'
 import useHandlePush from '@/hooks/useNavigation'
 import { User } from '@/api/user.api'
+import { showModal } from '@/store/modal.store'
+import Button from '@/components/Button/Button'
 
 type FormValues = {
   name: string
@@ -28,7 +30,7 @@ type UserEditFormProps = {
 
 const UserEditForm = (props: UserEditFormProps) => {
   const { id, name, email, phone, username, website } = props
-  const { handlePush, handlePushAutoCall } = useHandlePush()
+  const { handlePushAutoCall } = useHandlePush()
 
   const methods = useForm<FormValues>({
     defaultValues: {
@@ -44,12 +46,27 @@ const UserEditForm = (props: UserEditFormProps) => {
   const onSuccess = async (data: User) => {
     await queryClient.resetQueries({ queryKey: [ 'listUser' ] })
     queryClient.setQueriesData({ queryKey: [ 'findUser', String(data.id) ] }, data)
-    handlePush(USER_DETAILS(id))
+    showModal({
+      variant: 'success',
+      title: 'Success',
+      text: 'You successfully edited user',
+      onConfirm: handlePushAutoCall(USER_DETAILS(id)),
+      onClose: handlePushAutoCall(USER_DETAILS(id))
+    })
   }
 
   const { mutate, isLoading } = useUpdateUser({ onSuccess })
 
-  const handleUpdate = (data: FormValues) => {
+  const handleModal = (data: FormValues) => {
+    showModal({
+      variant: 'confirm',
+      title: 'Confirm',
+      text: 'Are you sure want ot edit this user?',
+      onConfirm: handleUpdate(data)
+    })
+  }
+
+  const handleUpdate = (data: FormValues) => () => {
     mutate({
       id,
       ...data
@@ -58,16 +75,12 @@ const UserEditForm = (props: UserEditFormProps) => {
 
   return (
     <FormProvider {...methods}>
-      <form onSubmit={handleSubmit(handleUpdate)} >
+      <form onSubmit={handleSubmit(handleModal)} >
         {isLoading && <PageLoader opacity={0.7}/>}
         <Form>
           <div className={styles.wrapper}>
-            <button className={styles.button} type='submit'>
-              <h5>Confirm</h5>
-            </button>
-            <button className={styles.button} onClick={handlePushAutoCall(USER_DETAILS(id as string))}>
-              <h5>Cancel</h5>
-            </button>
+            <Button text='Confirm' type='submit'/>
+            <Button text='Cancel' onClick={handlePushAutoCall(USER_DETAILS(String(id)))}/>
           </div>
         </Form>
       </form>

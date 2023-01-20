@@ -66,3 +66,11 @@ export type UpdateUserArgs = Partial<CreateUserArgs> & {
 export const updateUser = async (data: UpdateUserArgs) => {
   return api.patch<User>(`/users/${data.id}`, data).then(res => res.data)
 }
+
+export type DeleteUserArgs = {
+  id: string
+}
+
+export const deleteUser = async (data: DeleteUserArgs) => {
+  return api.delete<void>(`/users/${data.id}`).then(res => res.data)
+}

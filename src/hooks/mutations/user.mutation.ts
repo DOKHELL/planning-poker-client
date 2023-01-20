@@ -1,13 +1,21 @@
 import { useMutation } from '@tanstack/react-query'
-import { User, createUser, CreateUserArgs, UpdateUserArgs, updateUser } from '@/api/user.api'
+import {
+  User,
+  CreateUserArgs,
+  UpdateUserArgs,
+  DeleteUserArgs,
+  createUser,
+  updateUser,
+  deleteUser
+} from '@/api/user.api'
 import { ErrorResponse } from '@/@types/error'
 
-type CreateUserProps = {
+interface UserProps {
   onSuccess?: (data: User) => void
   onError?: () => void
   onSettled?: () => void
 }
-export const useCreateUser = ({ onSuccess, onError, onSettled }: CreateUserProps) => {
+export const useCreateUser = ({ onSuccess, onError, onSettled }: UserProps) => {
   return useMutation<User, ErrorResponse, CreateUserArgs>(
     [ 'createUser' ],
     (data) => createUser(data),
@@ -19,12 +27,28 @@ export const useCreateUser = ({ onSuccess, onError, onSettled }: CreateUserProps
   )
 }
 
-type UpdateUserProps = CreateUserProps
-
-export const useUpdateUser = ({ onSuccess, onError, onSettled }: UpdateUserProps) => {
+export const useUpdateUser = ({ onSuccess, onError, onSettled }: UserProps) => {
   return useMutation<User, ErrorResponse, UpdateUserArgs>(
     [ 'updateUser' ],
     (data) => updateUser(data),
+    {
+      onSuccess: onSuccess,
+      onError: onError,
+      onSettled: onSettled
+    }
+  )
+}
+
+interface UserDeleteProps {
+  onSuccess?: () => void
+  onError?: () => void
+  onSettled?: () => void
+}
+
+export const useDeleteUser = ({ onSuccess, onError, onSettled }: UserDeleteProps) => {
+  return useMutation<void, ErrorResponse, DeleteUserArgs>(
+    [ 'deleteUser' ],
+    (data) => deleteUser(data),
     {
       onSuccess: onSuccess,
       onError: onError,

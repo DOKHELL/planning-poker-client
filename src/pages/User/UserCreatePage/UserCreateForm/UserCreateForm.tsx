@@ -7,6 +7,8 @@ import { useCreateUser } from '@/hooks/mutations/user.mutation'
 import PageLoader from '@/components/PageLoader/PageLoader'
 import Form from '../../Form/Form'
 import styles from './UserCreateForm.module.scss'
+import { showModal } from '@/store/modal.store'
+import Button from '@/components/Button/Button'
 
 type FormValues = {
   name: string
@@ -23,7 +25,7 @@ const defaultValues = {
   website: ''
 }
 const UserCreateForm = () => {
-  const { handlePush } = useNavigation()
+  const { handlePushAutoCall } = useNavigation()
   const methods = useForm<FormValues>({
     defaultValues: defaultValues
   })
@@ -31,7 +33,13 @@ const UserCreateForm = () => {
   const queryClient = useQueryClient()
   const onSuccess = async () => {
     await queryClient.resetQueries({ queryKey: [ 'listUser' ] })
-    handlePush(USERS)
+    showModal({
+      variant: 'success',
+      title: 'Success',
+      text: 'You successfully created user',
+      onConfirm: handlePushAutoCall(USERS),
+      onClose: handlePushAutoCall(USERS)
+    })
   }
 
   const { mutate, isLoading } = useCreateUser({ onSuccess })
@@ -46,9 +54,7 @@ const UserCreateForm = () => {
         {isLoading && <PageLoader opacity={0.7}/>}
         <Form>
           <div className={styles.wrapper}>
-            <button className={styles.button} type='submit'>
-              <h5>Create</h5>
-            </button>
+            <Button type='submit' text='Create'/>
           </div>
         </Form>
       </form>

@@ -42,7 +42,8 @@ const UserEditForm = (props: UserEditFormProps) => {
   const { handleSubmit } = methods
   const queryClient = useQueryClient()
   const onSuccess = async (data: User) => {
-    queryClient.setQueriesData([ 'findUser' ], data)
+    await queryClient.resetQueries({ queryKey: [ 'listUser' ] })
+    queryClient.setQueriesData({ queryKey: [ 'findUser', String(data.id) ] }, data)
     handlePush(USER_DETAILS(id))
   }
 

@@ -30,7 +30,7 @@ const UserCreateForm = () => {
   const { handleSubmit } = methods
   const queryClient = useQueryClient()
   const onSuccess = async () => {
-    await queryClient.refetchQueries({ queryKey: [ 'listUser' ] })
+    await queryClient.resetQueries({ queryKey: [ 'listUser' ] })
     handlePush(USERS)
   }
 

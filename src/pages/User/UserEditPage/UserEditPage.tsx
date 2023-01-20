@@ -11,15 +11,15 @@ import PageLoader from '@/components/PageLoader/PageLoader'
 
 const UserEditPage = () => {
   const { handlePushAutoCall } = useHandlePush()
-  const { id } = useParams<'id'>()
-  const { data: user, isLoading: isFindLoading, isError, error } = useFindUser(id as string)
+  const { id } = useParams<{ id: string }>()
+  const { data: user, isLoading: isFindLoading, isError, error } = useFindUser(String(id))
 
   if(isFindLoading) return <PageLoader/>
   if(isError) return <div>Error: {error.message}</div>
 
   return (
     <>
-      <BackButton onBack={handlePushAutoCall(USER_DETAILS(id as string))}/>
+      <BackButton onBack={handlePushAutoCall(USER_DETAILS(String(id)))}/>
       <Block>
         <Title title='Edit User'/>
         <UserEditForm {...user}/>

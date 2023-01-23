@@ -1,6 +1,6 @@
 import { proxy } from 'valtio'
 import { devtools } from 'valtio/utils'
-import { Filter } from '../utils/filtersSerializer'
+import { Filter } from '@/utils/filtersSerializer'
 
 export const initFilters = (): Filter => ({
   name: {
@@ -33,11 +33,13 @@ export const setCurrentPage = (currentPage: number) => {
   userStore.currentPage = currentPage
 }
 
-export const addUserFilters = (name: string, value: string) => {
+export const setUserFilters = (name: string, value: string) => {
+  userStore.currentPage = 1
   userStore.filters[name].value = value
 }
 
 export const resetUserFilters = () => {
+  userStore.currentPage = 1
   userStore.filters = initFilters()
 }
 

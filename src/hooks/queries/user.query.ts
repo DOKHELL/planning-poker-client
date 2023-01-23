@@ -1,10 +1,10 @@
 import { useQuery } from '@tanstack/react-query'
-import { findUser, listUser, ListUserResponse, User } from '../../api/user.api'
-import { ErrorResponse } from '../../@types/error'
+import { findUser, listUser, ListUserResponse, User } from '@/api/user.api'
+import { ErrorResponse } from '@/@types/error'
 import { useSnapshot } from 'valtio'
-import { userStore } from '../../store/user.store'
+import { userStore } from '@/store/user.store'
 import useDebounce from '../useDebounce'
-import { filtersSerializer } from '../../utils/filtersSerializer'
+import { filtersSerializer } from '@/utils/filtersSerializer'
 
 export const useListUser = () => {
   const { pageSize, currentPage, filters } = useSnapshot(userStore)
@@ -18,8 +18,9 @@ export const useListUser = () => {
       pageSize,
       filters: serializedFilters
     }), {
+      refetchOnMount: true,
       keepPreviousData: true,
-      staleTime: 5000
+      staleTime: 10000
     })
 }
 

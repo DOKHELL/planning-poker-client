@@ -1,16 +1,16 @@
 import React  from 'react'
-import FiltersWrapper from '../../../components/FiltersWrapper/FiltersWrapper'
-import Input from '../../../components/Input/Input'
-import { addUserFilters, userStore, resetUserFilters } from '../../../store/user.store'
+import FiltersWrapper from '@/components/FiltersWrapper/FiltersWrapper'
+import Input from '../../../../components/Input/Input'
+import { userStore, resetUserFilters, setUserFilters } from '@/store/user.store'
 import { useSnapshot } from 'valtio'
 
 
-const UserFilters = () => {
+const Filters = () => {
   const { filters } = useSnapshot(userStore)
 
   const handleFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
-    addUserFilters(name, value)
+    setUserFilters(name, value)
   }
 
   const handleResetFilters = () => {
@@ -43,4 +43,4 @@ const UserFilters = () => {
   )
 }
 
-export default UserFilters
+export default Filters

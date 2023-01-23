@@ -1,6 +1,6 @@
-import api from '../services/axios'
+import api from '@/services/axios'
 import { AxiosResponse } from 'axios'
-import { Meta } from '../@types'
+import { Meta } from '@/@types'
 
 export type User = {
   id: string
@@ -40,10 +40,37 @@ export type ListUserArgs = {
 }
 
 export const listUser = async ({ currentPage, pageSize, filters }: ListUserArgs) => {
-  return api.get<User[]>(`/users?_page=${currentPage}&_limit=${pageSize}${filters}`)
+  return api.get<User[]>(`/users?_page=${currentPage}&_sort=id&_order=desc&_limit=${pageSize}${filters}`)
     .then(res => convertResponse(res, currentPage, pageSize))
 }
 
 export const findUser = async (id: string) => {
   return api.get<User>(`/users/${id}`).then(res => res.data)
+}
+
+export type CreateUserArgs = {
+  name: string
+  email: string
+  phone: string
+  username: string
+  website: string
+}
+export const createUser = async (data: CreateUserArgs) => {
+  return api.post<User>('/users', data).then(res => res.data)
+}
+
+export type UpdateUserArgs = Partial<CreateUserArgs> & {
+  id: string
+}
+
+export const updateUser = async (data: UpdateUserArgs) => {
+  return api.patch<User>(`/users/${data.id}`, data).then(res => res.data)
+}
+
+export type DeleteUserArgs = {
+  id: string
+}
+
+export const deleteUser = async (data: DeleteUserArgs) => {
+  return api.delete<void>(`/users/${data.id}`).then(res => res.data)
 }

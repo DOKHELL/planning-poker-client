@@ -1,5 +1,6 @@
 import React from 'react'
 import styles from './FiltersWrapper.module.scss'
+import Button from '@/components/Button/Button'
 
 export interface FiltersWrapperProps {
   children?: React.ReactNode
@@ -25,11 +26,7 @@ const FiltersWrapper = (props: FiltersWrapperProps) => {
       {showClearBtn &&
         <div className={styles.filter}>
           <div className={styles.clearWrapper}>
-            <button className={styles.clearBtn} onClick={onClear}>
-              <h5>
-                {clearBtnText}
-              </h5>
-            </button>
+            <Button text={clearBtnText} onClick={onClear}/>
           </div>
         </div>}
     </div>

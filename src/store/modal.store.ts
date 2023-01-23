@@ -1,4 +1,4 @@
-import { proxy } from 'valtio'
+import { proxy, useSnapshot } from 'valtio'
 import { devtools } from 'valtio/utils'
 import React from 'react'
 
@@ -15,9 +15,12 @@ interface ModalState {
   children?: React.ReactNode
 }
 
-export const defaultHandler = () => true
+interface ModalStore {
+  state: ModalState
+}
 
-export const modalStore = proxy<ModalState>({
+const defaultHandler = () => true
+const defaultState = (): ModalState => ({
   open: false,
   variant: 'custom',
   title: '',
@@ -30,42 +33,24 @@ export const modalStore = proxy<ModalState>({
   children: null,
 })
 
-export const showModal = (props: ModalState) => {
-  const {
-    confirmBtnText,
-    cancelBtnText,
-    onConfirm,
-    text,
-    onClose,
-    title,
-    variant,
-    maxWidth = 560,
-    children
-  } = props
+export const modalStore = proxy<ModalStore>({
+  state: defaultState()
+})
 
-  modalStore.open = true
-  modalStore.variant = variant
-  modalStore.title = title
-  modalStore.text = text
-  modalStore.confirmBtnText = confirmBtnText
-  modalStore.cancelBtnText = cancelBtnText
-  modalStore.onConfirm = onConfirm
-  modalStore.onClose = onClose
-  modalStore.maxWidth = maxWidth
-  modalStore.children = children
+export const useModalStore = () => {
+  return useSnapshot(modalStore).state
+}
+
+export const showModal = (props: ModalState) => {
+  modalStore.state = {
+    ...modalStore.state,
+    ...props,
+    open: true,
+  }
 }
 
 export const resetState = () => {
-  modalStore.open = false
-  modalStore.variant = 'custom'
-  modalStore.title = ''
-  modalStore.text = ''
-  modalStore.onClose = defaultHandler
-  modalStore.onConfirm = defaultHandler
-  modalStore.confirmBtnText = ''
-  modalStore.cancelBtnText = ''
-  modalStore.maxWidth = 560
-  modalStore.children = null
+  modalStore.state = defaultState()
 }
 
 devtools(modalStore, { name: 'modalStore', enabled: true })

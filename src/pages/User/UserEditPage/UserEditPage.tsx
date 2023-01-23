@@ -1,4 +1,3 @@
-import React from 'react'
 import Block from '@/components/Block/Block'
 import Title from '@/components/Title/Title'
 import BackButton from '@/components/BackButton/BackButton'
@@ -11,18 +10,18 @@ import PageLoader from '@/components/PageLoader/PageLoader'
 
 const UserEditPage = () => {
   const { handlePushAutoCall } = useHandlePush()
-  const { id } = useParams<{ id: string }>()
-  const { data: user, isLoading: isFindLoading, isError, error } = useFindUser(String(id))
+  const { id = '' } = useParams<{ id: string }>()
+  const { isLoading, isError, error } = useFindUser(id)
 
-  if(isFindLoading) return <PageLoader/>
+  if(isLoading) return <PageLoader/>
   if(isError) return <div>Error: {error.message}</div>
 
   return (
     <>
-      <BackButton onBack={handlePushAutoCall(USER_DETAILS(String(id)))}/>
+      <BackButton onBack={handlePushAutoCall(USER_DETAILS(id))}/>
       <Block>
         <Title title='Edit User'/>
-        <UserEditForm {...user}/>
+        <UserEditForm/>
       </Block>
     </>
   )

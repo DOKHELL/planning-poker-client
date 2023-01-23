@@ -1,4 +1,3 @@
-import React from 'react'
 import Block from '@/components/Block/Block'
 import Title from '@/components/Title/Title'
 import BackButton from '@/components/BackButton/BackButton'

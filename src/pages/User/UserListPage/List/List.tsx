@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './List.module.scss'
 import { useListUser } from '@/hooks/queries/user.query'
 import BlockLoader from '@/components/BlockLoader/BlockLoader'
@@ -8,38 +7,33 @@ import viewIcon from '@/assets/icons/view.svg'
 import deleteIcon from '@/assets/icons/delete.svg'
 import { showModal } from '@/store/modal.store'
 import { useDeleteUser } from '@/hooks/mutations/user.mutation'
-import { useQueryClient } from '@tanstack/react-query'
 import PageLoader from '@/components/PageLoader/PageLoader'
 
 const List = () => {
   const { handlePushAutoCall } = useNavigation()
   const { data, isFetching, error } = useListUser()
-  const queryClient = useQueryClient()
 
-  if (error) {
-    return <div>Error: {error.message}</div>
-  }
-
-  const onSuccess = () => {
-    showModal({
-      variant: 'success',
-      title: 'Success',
-      text: 'You successfully deleted user',
-      onConfirm: async () => {
-        await queryClient.resetQueries({ queryKey: [ 'listUser' ] })
-      }
-    })
-  }
-
-  const { mutate, isLoading } = useDeleteUser({ onSuccess })
+  const { mutate, isLoading } = useDeleteUser()
 
   const handleModal = (name: string, id: string) => () => {
     showModal({
       variant: 'confirm',
       title: 'Confirm',
       text: `Are sure want to delete ${name}?`,
-      onConfirm: () => mutate({ id })
+      onConfirm: () => mutate({ id }, {
+        onSuccess: () => {
+          showModal({
+            variant: 'success',
+            title: 'Success',
+            text: 'You successfully deleted user',
+          })
+        }
+      })
     })
+  }
+
+  if (error) {
+    return <div>Error: {error.message}</div>
   }
 
   return (

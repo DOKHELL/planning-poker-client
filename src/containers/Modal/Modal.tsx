@@ -1,7 +1,5 @@
-import React from 'react'
 import styles from './Modal.module.scss'
-import { useSnapshot } from 'valtio'
-import { modalStore, resetState } from '@/store/modal.store'
+import { resetState, useModalStore } from '@/store/modal.store'
 import Button from '@/components/Button/Button'
 
 const Modal = () => {
@@ -16,7 +14,7 @@ const Modal = () => {
     variant,
     children,
     maxWidth
-  } = useSnapshot(modalStore)
+  } = useModalStore()
 
   const handleConfirm = () => {
     resetState()

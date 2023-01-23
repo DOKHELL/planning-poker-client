@@ -1,15 +1,15 @@
 import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
-import { useQueryClient } from '@tanstack/react-query'
 import { USER_DETAILS } from '@/constants/routes'
 import { useUpdateUser } from '@/hooks/mutations/user.mutation'
 import PageLoader from '@/components/PageLoader/PageLoader'
 import Form from '../../Form/Form'
 import styles from './UserEditForm.module.scss'
 import useHandlePush from '@/hooks/useNavigation'
-import { User } from '@/api/user.api'
 import { showModal } from '@/store/modal.store'
 import Button from '@/components/Button/Button'
+import { useFindUser } from '@/hooks/queries/user.query'
+import { useParams } from 'react-router-dom'
 
 type FormValues = {
   name: string
@@ -19,43 +19,23 @@ type FormValues = {
   website: string
 }
 
-type UserEditFormProps = {
-  id: string
-  name: string,
-  email: string,
-  phone: string,
-  username: string,
-  website: string
-}
-
-const UserEditForm = (props: UserEditFormProps) => {
-  const { id, name, email, phone, username, website } = props
+const UserEditForm = () => {
+  const { id = '' } = useParams<{ id: string }>()
+  const { data } = useFindUser(id)
   const { handlePushAutoCall } = useHandlePush()
 
   const methods = useForm<FormValues>({
     defaultValues: {
-      name,
-      email,
-      phone,
-      username,
-      website
+      name: data?.name,
+      email: data?.email,
+      phone: data?.phone,
+      username: data?.username,
+      website: data?.website
     }
   })
   const { handleSubmit } = methods
-  const queryClient = useQueryClient()
-  const onSuccess = async (data: User) => {
-    await queryClient.resetQueries({ queryKey: [ 'listUser' ] })
-    queryClient.setQueriesData({ queryKey: [ 'findUser', String(data.id) ] }, data)
-    showModal({
-      variant: 'success',
-      title: 'Success',
-      text: 'You successfully edited user',
-      onConfirm: handlePushAutoCall(USER_DETAILS(id)),
-      onClose: handlePushAutoCall(USER_DETAILS(id))
-    })
-  }
 
-  const { mutate, isLoading } = useUpdateUser({ onSuccess })
+  const { mutate, isLoading } = useUpdateUser()
 
   const handleModal = (data: FormValues) => {
     showModal({
@@ -70,6 +50,16 @@ const UserEditForm = (props: UserEditFormProps) => {
     mutate({
       id,
       ...data
+    }, {
+      onSuccess: () => {
+        showModal({
+          variant: 'success',
+          title: 'Success',
+          text: 'You successfully edited user',
+          onConfirm: handlePushAutoCall(USER_DETAILS(id)),
+          onClose: handlePushAutoCall(USER_DETAILS(id))
+        })
+      }
     })
   }
 
@@ -80,7 +70,7 @@ const UserEditForm = (props: UserEditFormProps) => {
         <Form>
           <div className={styles.wrapper}>
             <Button text='Confirm' type='submit'/>
-            <Button text='Cancel' onClick={handlePushAutoCall(USER_DETAILS(String(id)))}/>
+            <Button text='Cancel' onClick={handlePushAutoCall(USER_DETAILS(id))}/>
           </div>
         </Form>
       </form>

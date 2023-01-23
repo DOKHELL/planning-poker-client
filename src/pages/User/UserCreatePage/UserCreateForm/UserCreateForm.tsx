@@ -1,7 +1,5 @@
-import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import useNavigation from '@/hooks/useNavigation'
-import { useQueryClient } from '@tanstack/react-query'
 import { USERS } from '@/constants/routes'
 import { useCreateUser } from '@/hooks/mutations/user.mutation'
 import PageLoader from '@/components/PageLoader/PageLoader'
@@ -17,35 +15,25 @@ type FormValues = {
   username: string
   website: string
 }
-const defaultValues = {
-  name: '',
-  email: '',
-  phone: '',
-  username: '',
-  website: ''
-}
+
 const UserCreateForm = () => {
   const { handlePushAutoCall } = useNavigation()
-  const methods = useForm<FormValues>({
-    defaultValues: defaultValues
-  })
+  const methods = useForm<FormValues>()
   const { handleSubmit } = methods
-  const queryClient = useQueryClient()
-  const onSuccess = async () => {
-    await queryClient.resetQueries({ queryKey: [ 'listUser' ] })
-    showModal({
-      variant: 'success',
-      title: 'Success',
-      text: 'You successfully created user',
-      onConfirm: handlePushAutoCall(USERS),
-      onClose: handlePushAutoCall(USERS)
-    })
-  }
-
-  const { mutate, isLoading } = useCreateUser({ onSuccess })
+  const { mutate, isLoading } = useCreateUser()
 
   const handleCreate = (data: FormValues) => {
-    mutate(data)
+    mutate(data, {
+      onSuccess: () => {
+        showModal({
+          variant: 'success',
+          title: 'Success',
+          text: 'You successfully created user',
+          onConfirm: handlePushAutoCall(USERS),
+          onClose: handlePushAutoCall(USERS)
+        })
+      }
+    })
   }
 
   return (

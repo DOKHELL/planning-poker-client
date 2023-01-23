@@ -18,8 +18,9 @@ export const useListUser = () => {
       pageSize,
       filters: serializedFilters
     }), {
+      refetchOnMount: true,
       keepPreviousData: true,
-      staleTime: 5000
+      staleTime: 10000
     })
 }
 

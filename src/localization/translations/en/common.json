@@ -1,0 +1,10 @@
+{
+  "clear": "Clear",
+  "action": "Action",
+  "loading": "Loading...",
+  "noFound": "No Found",
+  "back": "Go back to previous page",
+  "error": "Error: {{message}}",
+  "ok": "OK",
+  "cancel": "Cancel"
+}

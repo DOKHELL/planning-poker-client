@@ -1,18 +1,18 @@
 import { useQuery } from '@tanstack/react-query'
 import { findUser, listUser, ListUserResponse, User } from '@/api/user.api'
 import { ErrorResponse } from '@/@types/error'
-import { useSnapshot } from 'valtio'
-import { userStore } from '@/store/user.store'
+import { useUserStore } from '@/store/user.store'
 import useDebounce from '../useDebounce'
 import { filtersSerializer } from '@/utils/filtersSerializer'
+import { userQueryKeys } from '@/constants/queryKeyFactory'
 
 export const useListUser = () => {
-  const { pageSize, currentPage, filters } = useSnapshot(userStore)
+  const { pageSize, currentPage, filters } = useUserStore()
   const debouncedFilters = useDebounce(filters, 700)
   const serializedFilters = filtersSerializer(debouncedFilters)
 
   return  useQuery<ListUserResponse, ErrorResponse>(
-    [ 'listUser', { filters: serializedFilters, pageSize, currentPage } ],
+    userQueryKeys.list(serializedFilters, pageSize, currentPage),
     () => listUser({
       currentPage,
       pageSize,
@@ -27,7 +27,7 @@ export const useListUser = () => {
 
 export const useFindUser = (id: string) =>
   useQuery<User, ErrorResponse>(
-    [ 'findUser', id ],
+    userQueryKeys.find(id),
     () => findUser(id)
   )
 

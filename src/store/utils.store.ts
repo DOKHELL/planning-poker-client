@@ -1,4 +1,4 @@
-import { proxy } from 'valtio'
+import { proxy, useSnapshot } from 'valtio'
 import { devtools } from 'valtio/utils'
 
 export type UtilsStore = {
@@ -6,8 +6,10 @@ export type UtilsStore = {
 }
 
 export const utilsStore = proxy<UtilsStore>({
-  isMobileOpen: false
+  isMobileOpen: false,
 })
+
+export const useUtilsStore = () => useSnapshot(utilsStore)
 
 export const setIsMobileOpen = (payload: boolean) => {
   utilsStore.isMobileOpen = payload

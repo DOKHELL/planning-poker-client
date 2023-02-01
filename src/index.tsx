@@ -7,6 +7,8 @@ import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import getEnvVar from './utils/getEnvVar'
 import Modal from '@/containers/Modal/Modal'
+import { I18nextProvider } from 'react-i18next'
+import i18n from '@/localization/i18n'
 
 
 const client = new QueryClient({
@@ -22,9 +24,11 @@ const client = new QueryClient({
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <QueryClientProvider client={client}>
     <BrowserRouter>
-      <App />
-      <Modal/>
-      <ReactQueryDevtools initialIsOpen={false} />
+      <I18nextProvider i18n={i18n}>
+        <App/>
+        <Modal/>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </I18nextProvider>
     </BrowserRouter>
   </QueryClientProvider>
 )

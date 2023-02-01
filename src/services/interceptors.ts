@@ -1,6 +1,6 @@
 import instance from './axios'
 import { AxiosError, AxiosRequestConfig, AxiosResponse } from 'axios'
-import { getError } from '../utils/error'
+import { getError } from '@/utils/error'
 
 const setupAxiosInterceptors = () => {
   const onRequestSuccess = (config: AxiosRequestConfig) => {

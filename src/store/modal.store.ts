@@ -37,9 +37,7 @@ export const modalStore = proxy<ModalStore>({
   state: defaultState()
 })
 
-export const useModalStore = () => {
-  return useSnapshot(modalStore).state
-}
+export const useModalStore = () => useSnapshot(modalStore).state
 
 export const showModal = (props: ModalState) => {
   modalStore.state = {

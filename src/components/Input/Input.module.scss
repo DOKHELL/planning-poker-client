@@ -85,6 +85,14 @@
   color: transparent;
 }
 
+.textFieldFloating .textFieldInput:focus::-moz-placeholder{
+  color: unset;
+}
+
+.textFieldFloating .textFieldInput:focus::placeholder{
+  color: unset;
+}
+
 .textFieldFloating .textFieldInput:focus,
 .textFieldFloating .textFieldInput:not(:placeholder-shown) {
   padding-top: 1.625rem;

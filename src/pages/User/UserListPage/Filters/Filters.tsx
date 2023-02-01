@@ -1,12 +1,13 @@
-import React  from 'react'
+import React from 'react'
 import FiltersWrapper from '@/components/FiltersWrapper/FiltersWrapper'
 import Input from '../../../../components/Input/Input'
-import { userStore, resetUserFilters, setUserFilters } from '@/store/user.store'
-import { useSnapshot } from 'valtio'
+import { useUserStore, resetUserFilters, setUserFilters } from '@/store/user.store'
+import { useTranslation } from 'react-i18next'
 
 
 const Filters = () => {
-  const { filters } = useSnapshot(userStore)
+  const { t } = useTranslation()
+  const { filters } = useUserStore()
 
   const handleFilters = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
@@ -20,22 +21,22 @@ const Filters = () => {
   return (
     <FiltersWrapper
       showClearBtn
-      clearBtnText='Clear'
+      clearBtnText={t('common.clear')}
       onClear={handleResetFilters}
     >
       <Input
         id='name'
         name='name'
-        label='Name'
-        placeholder='Enter Name'
+        label={t('users.list.filters.name')}
+        placeholder={t('users.list.filters.namePlaceholder')}
         value={filters.name.value || ''}
         onChange={handleFilters}
       />
       <Input
         id='username'
         name='username'
-        label='Username'
-        placeholder='Enter Username'
+        label={t('users.list.filters.username')}
+        placeholder={t('users.list.filters.usernamePlaceholder')}
         value={filters.username.value || ''}
         onChange={handleFilters}
       />

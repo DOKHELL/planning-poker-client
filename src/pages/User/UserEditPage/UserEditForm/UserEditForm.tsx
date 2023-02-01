@@ -1,4 +1,3 @@
-import React from 'react'
 import { FormProvider, useForm } from 'react-hook-form'
 import { USER_DETAILS } from '@/constants/routes'
 import { useUpdateUser } from '@/hooks/mutations/user.mutation'
@@ -10,6 +9,7 @@ import { showModal } from '@/store/modal.store'
 import Button from '@/components/Button/Button'
 import { useFindUser } from '@/hooks/queries/user.query'
 import { useParams } from 'react-router-dom'
+import { useTranslation } from 'react-i18next'
 
 type FormValues = {
   name: string
@@ -19,18 +19,28 @@ type FormValues = {
   website: string
 }
 
+const defaultValues = {
+  name: '',
+  email: '',
+  phone: '',
+  username: '',
+  website: '',
+}
+
 const UserEditForm = () => {
+  const { t } = useTranslation()
   const { id = '' } = useParams<{ id: string }>()
-  const { data } = useFindUser(id)
+  const { data = defaultValues } = useFindUser(id)
+  const { name, email, phone, username, website } = data
   const { handlePushAutoCall } = useHandlePush()
 
   const methods = useForm<FormValues>({
     defaultValues: {
-      name: data?.name,
-      email: data?.email,
-      phone: data?.phone,
-      username: data?.username,
-      website: data?.website
+      name,
+      email,
+      phone,
+      username,
+      website
     }
   })
   const { handleSubmit } = methods
@@ -40,8 +50,8 @@ const UserEditForm = () => {
   const handleModal = (data: FormValues) => {
     showModal({
       variant: 'confirm',
-      title: 'Confirm',
-      text: 'Are you sure want ot edit this user?',
+      title: t('users.modal.confirm'),
+      text: t('users.modal.sureEdit'),
       onConfirm: handleUpdate(data)
     })
   }
@@ -54,8 +64,8 @@ const UserEditForm = () => {
       onSuccess: () => {
         showModal({
           variant: 'success',
-          title: 'Success',
-          text: 'You successfully edited user',
+          title: t('users.modal.success'),
+          text: t('users.modal.successEditText'),
           onConfirm: handlePushAutoCall(USER_DETAILS(id)),
           onClose: handlePushAutoCall(USER_DETAILS(id))
         })
@@ -67,10 +77,10 @@ const UserEditForm = () => {
     <FormProvider {...methods}>
       <form onSubmit={handleSubmit(handleModal)} >
         {isLoading && <PageLoader opacity={0.7}/>}
-        <Form>
+        <Form isCreate={false}>
           <div className={styles.wrapper}>
-            <Button text='Confirm' type='submit'/>
-            <Button text='Cancel' onClick={handlePushAutoCall(USER_DETAILS(id))}/>
+            <Button text={t('users.form.confirm')} type='submit'/>
+            <Button text={t('users.form.cancel')} onClick={handlePushAutoCall(USER_DETAILS(id))}/>
           </div>
         </Form>
       </form>

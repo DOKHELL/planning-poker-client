@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from './Warning.module.scss'
 import Button from '@/components/Button/Button'
 

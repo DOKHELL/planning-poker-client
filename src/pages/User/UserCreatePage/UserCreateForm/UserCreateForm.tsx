@@ -7,6 +7,7 @@ import Form from '../../Form/Form'
 import styles from './UserCreateForm.module.scss'
 import { showModal } from '@/store/modal.store'
 import Button from '@/components/Button/Button'
+import { useTranslation } from 'react-i18next'
 
 type FormValues = {
   name: string
@@ -16,9 +17,20 @@ type FormValues = {
   website: string
 }
 
+const defaultValues = {
+  name: '',
+  email: '',
+  phone: '',
+  username: '',
+  website: ''
+}
+
 const UserCreateForm = () => {
+  const { t } = useTranslation()
   const { handlePushAutoCall } = useNavigation()
-  const methods = useForm<FormValues>()
+  const methods = useForm<FormValues>({
+    defaultValues: defaultValues
+  })
   const { handleSubmit } = methods
   const { mutate, isLoading } = useCreateUser()
 
@@ -27,8 +39,8 @@ const UserCreateForm = () => {
       onSuccess: () => {
         showModal({
           variant: 'success',
-          title: 'Success',
-          text: 'You successfully created user',
+          title: t('users.modal.success'),
+          text: t('users.modal.successCreateText'),
           onConfirm: handlePushAutoCall(USERS),
           onClose: handlePushAutoCall(USERS)
         })
@@ -42,7 +54,7 @@ const UserCreateForm = () => {
         {isLoading && <PageLoader opacity={0.7}/>}
         <Form>
           <div className={styles.wrapper}>
-            <Button type='submit' text='Create'/>
+            <Button type='submit' text={t('users.form.create')}/>
           </div>
         </Form>
       </form>

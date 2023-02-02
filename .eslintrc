@@ -26,6 +26,7 @@
   "rules": {
     "@typescript-eslint/no-empty-interface": "off",
     "@typescript-eslint/ban-ts-comment": "off",
+    "import/no-named-as-default-member": "off",
     "import/named": "off",
     "import/no-unresolved": "off",
     "semi": [

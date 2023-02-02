@@ -1,8 +1,10 @@
 import styles from './Modal.module.scss'
 import { resetState, useModalStore } from '@/store/modal.store'
 import Button from '@/components/Button/Button'
+import { useTranslation } from 'react-i18next'
 
 const Modal = () => {
+  const { t } = useTranslation()
   const {
     title,
     text,
@@ -39,8 +41,8 @@ const Modal = () => {
               <div className={styles.title}>{title}</div>
               <div className={styles.text}>{text}</div>
               <div className={styles.buttons}>
-                <Button text={confirmBtnText || 'OK'} onClick={handleConfirm}/>
-                {variant === 'confirm' && <Button text={cancelBtnText || 'Cancel'} onClick={handleClose}/>}
+                <Button text={confirmBtnText || t('common.ok')} onClick={handleConfirm}/>
+                {variant === 'confirm' && <Button text={cancelBtnText || t('common.cancel')} onClick={handleClose}/>}
               </div>
             </div>
           </div>

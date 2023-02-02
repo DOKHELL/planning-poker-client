@@ -1,4 +1,4 @@
-import { proxy } from 'valtio'
+import { proxy, useSnapshot } from 'valtio'
 import { devtools } from 'valtio/utils'
 import { Filter } from '@/utils/filtersSerializer'
 
@@ -24,6 +24,8 @@ export const userStore = proxy<UserStore>({
   pageSize: 9,
   filters: initFilters(),
 })
+
+export const useUserStore = () =>  useSnapshot(userStore)
 
 export const setPageSize = (pageSize: number) => {
   userStore.pageSize = pageSize

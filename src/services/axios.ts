@@ -1,5 +1,5 @@
 import axios from 'axios'
-import getEnvVar from '../utils/getEnvVar'
+import getEnvVar from '@/utils/getEnvVar'
 
 axios.defaults.withCredentials = true
 

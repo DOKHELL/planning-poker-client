@@ -8,8 +8,10 @@ import deleteIcon from '@/assets/icons/delete.svg'
 import { showModal } from '@/store/modal.store'
 import { useDeleteUser } from '@/hooks/mutations/user.mutation'
 import PageLoader from '@/components/PageLoader/PageLoader'
+import { useTranslation } from 'react-i18next'
 
 const List = () => {
+  const { t } = useTranslation()
   const { handlePushAutoCall } = useNavigation()
   const { data, isFetching, error } = useListUser()
 
@@ -18,14 +20,14 @@ const List = () => {
   const handleModal = (name: string, id: string) => () => {
     showModal({
       variant: 'confirm',
-      title: 'Confirm',
-      text: `Are sure want to delete ${name}?`,
+      title: t('users.modal.confirm'),
+      text: t('users.modal.sureDelete', { name }),
       onConfirm: () => mutate({ id }, {
         onSuccess: () => {
           showModal({
             variant: 'success',
-            title: 'Success',
-            text: 'You successfully deleted user',
+            title: t('users.modal.success'),
+            text: t('users.modal.successDeleteText'),
           })
         }
       })
@@ -33,7 +35,7 @@ const List = () => {
   }
 
   if (error) {
-    return <div>Error: {error.message}</div>
+    return <div>{t('common.error', { message: error.message })}</div>
   }
 
   return (
@@ -42,13 +44,13 @@ const List = () => {
       <table className={styles.table}>
         <thead>
           <tr>
-            <th>ID</th>
-            <th>Name</th>
-            <th>Email</th>
-            <th>Phone</th>
-            <th>Username</th>
-            <th>Website</th>
-            <th>Action</th>
+            <th>{t('users.list.grid.id')}</th>
+            <th>{t('users.list.grid.name')}</th>
+            <th>{t('users.list.grid.email')}</th>
+            <th>{t('users.list.grid.phone')}</th>
+            <th>{t('users.list.grid.username')}</th>
+            <th>{t('users.list.grid.website')}</th>
+            <th>{t('common.action')}</th>
           </tr>
         </thead>
         <tbody>
@@ -67,7 +69,7 @@ const List = () => {
                   <img src={deleteIcon} alt="delete" onClick={handleModal(obj.name, obj.id)}/>
                 </div></td>
               </tr>
-            )) : <tr><td className={styles.noFound}>No Found</td></tr>}
+            )) : <tr><td className={styles.noFound}>{t('common.noFound')}</td></tr>}
           </>
         </tbody>
       </table>

@@ -9,15 +9,16 @@ import {
   deleteUser
 } from '@/api/user.api'
 import { ErrorResponse } from '@/@types/error'
+import { userQueryKeys } from '@/constants/queryKeyFactory'
 
 export const useCreateUser = () => {
   const queryClient = useQueryClient()
   return useMutation<User, ErrorResponse, CreateUserArgs>(
-    [ 'createUser' ],
+    userQueryKeys.create,
     (data) => createUser(data),
     {
       onSuccess: () => {
-        queryClient.resetQueries({ queryKey: [ 'listUser' ] })
+        queryClient.resetQueries({ queryKey: userQueryKeys.all })
       }
     }
   )
@@ -26,12 +27,12 @@ export const useCreateUser = () => {
 export const useUpdateUser = () => {
   const queryClient = useQueryClient()
   return useMutation<User, ErrorResponse, UpdateUserArgs>(
-    [ 'updateUser' ],
+    userQueryKeys.update,
     (data) => updateUser(data),
     {
       onSuccess: (data) => {
-        queryClient.resetQueries({ queryKey: [ 'listUser' ] })
-        queryClient.setQueriesData({ queryKey: [ 'findUser', String(data.id) ] }, data)
+        queryClient.resetQueries({ queryKey: userQueryKeys.all })
+        queryClient.setQueriesData({ queryKey: userQueryKeys.find(String(data.id)) }, data)
       },
     }
   )
@@ -40,11 +41,11 @@ export const useUpdateUser = () => {
 export const useDeleteUser = () => {
   const queryClient = useQueryClient()
   return useMutation<void, ErrorResponse, DeleteUserArgs>(
-    [ 'deleteUser' ],
+    userQueryKeys.delete,
     (data) => deleteUser(data),
     {
       onSuccess: () => {
-        queryClient.resetQueries({ queryKey: [ 'listUser' ] })
+        queryClient.resetQueries({ queryKey: userQueryKeys.all })
       },
     }
   )

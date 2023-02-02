@@ -2,11 +2,10 @@ import React from 'react'
 import ShaderPagination from '@/components/Pagination/Pagination'
 import styles from './Pagination.module.scss'
 import { useListUser } from '@/hooks/queries/user.query'
-import { setPageSize, setCurrentPage, userStore } from '@/store/user.store'
-import { useSnapshot } from 'valtio'
+import { setPageSize, setCurrentPage, useUserStore } from '@/store/user.store'
 
 const Pagination = () => {
-  const { pageSize, currentPage } = useSnapshot(userStore)
+  const { pageSize, currentPage } = useUserStore()
   const { data } = useListUser()
   const total = data?.meta?.totalCount
 

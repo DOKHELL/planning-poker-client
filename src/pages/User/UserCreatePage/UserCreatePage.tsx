@@ -4,15 +4,17 @@ import BackButton from '@/components/BackButton/BackButton'
 import useHandlePush from '@/hooks/useNavigation'
 import { USERS } from '@/constants/routes'
 import UserCreateForm from './UserCreateForm/UserCreateForm'
+import { useTranslation } from 'react-i18next'
 
 const UserCreatePage = () => {
+  const { t } = useTranslation()
   const { handlePushAutoCall } = useHandlePush()
 
   return (
     <>
-      <BackButton onBack={handlePushAutoCall(USERS)}/>
+      <BackButton text={t('common.back')} onBack={handlePushAutoCall(USERS)}/>
       <Block>
-        <Title title='Create User'/>
+        <Title title={t('users.form.createTitle')}/>
         <UserCreateForm/>
       </Block>
     </>

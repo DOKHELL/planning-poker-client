@@ -1,6 +1,6 @@
+import React from 'react'
 import { proxy, useSnapshot } from 'valtio'
 import { devtools } from 'valtio/utils'
-import React from 'react'
 
 interface ModalState {
   open?: boolean

@@ -1,7 +1,6 @@
-import React from 'react'
 import ReactDOM from 'react-dom/client'
-import App from './App'
 import './assets/styles/index.scss'
+import App from './App'
 import { BrowserRouter } from 'react-router-dom'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
@@ -9,7 +8,6 @@ import getEnvVar from './utils/getEnvVar'
 import Modal from '@/containers/Modal/Modal'
 import { I18nextProvider } from 'react-i18next'
 import i18n from '@/localization/i18n'
-
 
 const client = new QueryClient({
   defaultOptions: {

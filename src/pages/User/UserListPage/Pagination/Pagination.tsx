@@ -1,4 +1,3 @@
-import React from 'react'
 import ShaderPagination from '@/components/Pagination/Pagination'
 import styles from './Pagination.module.scss'
 import { useListUser } from '@/hooks/queries/user.query'

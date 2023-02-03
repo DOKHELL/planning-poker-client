@@ -4,7 +4,6 @@ import Input from '../../../../components/Input/Input'
 import { useUserStore, resetUserFilters, setUserFilters } from '@/store/user.store'
 import { useTranslation } from 'react-i18next'
 
-
 const Filters = () => {
   const { t } = useTranslation()
   const { filters } = useUserStore()

@@ -1,12 +1,12 @@
 import React, { useEffect, memo } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
-import db from '@/services/firebase'
+import { useParams } from 'react-router-dom'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
 import { connectToWS, getUsers } from '@/store/game.store'
 import { resetState, showModal } from '@/store/modal.store'
 import GameTable from '@/pages/GamePage/GameTable/GameTable'
 import GamePageBottomSection from '@/pages/GamePage/GamePageBottomSection/GamePageBottomSection'
-import { useParams } from 'react-router-dom'
+import db from '@/services/firebase'
 import styles from '@/pages/GamePage/GamePage.module.scss'
 
 const GamePageInner = () => {

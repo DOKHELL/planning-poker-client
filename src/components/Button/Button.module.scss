@@ -10,6 +10,10 @@
   cursor: pointer;
   transition: opacity .5s ease;
 
+  &:disabled {
+    background: #4a4d51;
+  }
+
   &:hover {
     opacity: 0.7;
   }

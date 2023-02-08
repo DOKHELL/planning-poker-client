@@ -90,6 +90,12 @@ export const resultAction = async (id: string | undefined) => {
   }
 }
 
+export const disconnectFromSoket = (reason: string) => {
+  if (savedSoket) {
+    savedSoket?.close(1000, reason)
+  }
+}
+
 export const logout = async (id: string | undefined, userId: string | undefined) => {
   try {
     const payload = {
@@ -97,7 +103,7 @@ export const logout = async (id: string | undefined, userId: string | undefined)
       userId: userId,
     }
     await api.post('/logout', payload)
-    savedSoket?.close(1000, 'logout')
+    disconnectFromSoket('logout')
   } catch (e) {
     console.log(e)
   }
@@ -124,7 +130,7 @@ export const setData = (data: Response, uid: string | undefined) => {
 }
 
 export const connectToWS = (id: string | undefined, user: GoogleUser | null | undefined) => {
-  const socket = new WebSocket('ws://194.34.232.79:5003/')
+  const socket = new WebSocket('wss://vmi854506.contaboserver.net:5003/')
   savedSoket = socket
   const payload = {
     sessionId: id,
@@ -136,7 +142,7 @@ export const connectToWS = (id: string | undefined, user: GoogleUser | null | un
   }
 
   socket.onclose = (data) => {
-    if (data?.reason === 'logout') return
+    if ([ 'leave', 'logout' ].includes(data?.reason)) return
     socket.send(JSON.stringify(payload))
   }
 
@@ -157,6 +163,7 @@ export const connectToWS = (id: string | undefined, user: GoogleUser | null | un
       break
     case 'update-card':
       if (gameStore.showResult) return
+      console.log('update-card update-card update-card pdate-card')
       setData(msg.data, user?.uid)
       break
     case 'result':

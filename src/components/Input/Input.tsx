@@ -10,6 +10,7 @@ export interface InputProps {
   placeholder: string
   className?: string
   value?: string | number
+  maxLength?: number
   label?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
@@ -26,12 +27,14 @@ const Input = (props: InputProps) => {
     onChange = () => undefined,
     type = 'text',
     placeholder = 'Enter Text',
-    disabled = false
+    disabled = false,
+    maxLength = 32
   } = props
 
   return (
     <div className={classNames(styles.textField, styles.textFieldFloating, className)}>
       <input
+        maxLength={maxLength}
         className={styles.textFieldInput}
         name={name}
         type={type}

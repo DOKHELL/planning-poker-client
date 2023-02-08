@@ -1,7 +1,7 @@
 {
   "name": "react-ts",
   "private": true,
-  "homepage": "https://DOKHELL.github.io/planning-poker-client",
+  "homepage": "https://dokhell.github.io/planning-poker-client",
   "version": "0.0.0",
   "type": "module",
   "scripts": {

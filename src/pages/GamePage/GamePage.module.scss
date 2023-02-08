@@ -1,0 +1,21 @@
+.gamePage {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.gamePageTableWrapper {
+  flex: 1;
+  @media screen and (min-width: 920px) {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    padding-bottom: 0;
+    width: 100%;
+  }
+  @media screen and (max-width: 919px) {
+    max-width: 98vw;
+    padding-bottom: 1.6rem;
+  }
+}

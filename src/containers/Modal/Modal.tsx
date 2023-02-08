@@ -14,17 +14,22 @@ const Modal = () => {
     confirmBtnText,
     cancelBtnText,
     variant,
+    canClose,
     children,
     maxWidth
   } = useModalStore()
 
   const handleConfirm = () => {
-    resetState()
     if(onConfirm) onConfirm()
+    if (canClose) {
+      resetState()
+    }
   }
 
   const handleClose = () => {
-    resetState()
+    if (canClose) {
+      resetState()
+    }
     if (onClose) onClose()
   }
 

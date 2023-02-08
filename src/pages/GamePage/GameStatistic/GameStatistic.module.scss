@@ -1,0 +1,83 @@
+.gameStatistic {
+  display: inline-flex;
+  height: 100%;
+  margin: 0 auto;
+  max-width: 100vw;
+  overflow-y: auto;
+  padding: 0 2.4rem;
+}
+.gameStatisticList {
+  display: flex;
+  height: 100%;
+  list-style: none;
+  margin: 0;
+  padding: 0 0 1.6rem;
+  grid-gap: 20px;
+}
+.gameStatisticItem {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+.gameStatisticBarContainer {
+  display: flex;
+  height: 100%;
+  justify-content: center;
+}
+.gameStatisticBar {
+  background-color: #f1f1f1;
+  border-radius: 0.8rem;
+  height: 100%;
+  overflow: hidden;
+  position: relative;
+  width: 0.8rem;
+}
+.gameStatisticBarFill {
+  background-color: #a8aeb2;
+  border-radius: 0.8rem;
+  bottom: 0;
+  left: 0;
+  position: absolute;
+  right: 0;
+}
+.gameStatisticCardContainer {
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+.gameStatisticCardSpacer {
+  height: 0.8rem;
+}
+.gameStatisticValue {
+  align-items: center;
+  border: 2px solid #a8aeb2;
+  border-radius: 0.8rem;
+  color: #a8aeb2;
+  display: flex;
+  font-size: 1.8rem;
+  font-weight: 700;
+  height: 6.4rem;
+  justify-content: center;
+  width: 4rem;
+  margin-bottom: 0.8rem;
+}
+.gameStatisticCardSpacerXL {
+  height: 0.8rem;
+}
+.gameStatisticVotes {
+  color: #a8aeb2;
+  font-size: 1.6rem;
+}
+.mostVoted {
+  .gameStatisticVotes {
+    color: #1a2935;
+  }
+  .gameStatisticValue {
+    border-color: #1a2935;
+    color: #1a2935;
+  }
+  .gameStatisticBarFill {
+    background-color: #1a2935;
+  }
+}

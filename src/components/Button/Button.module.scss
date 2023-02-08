@@ -1,13 +1,16 @@
 .button {
-  background: #4b4d70;
+  background: #3993ff;
   color: white;
   height: 48px;
+  font-size: 16px;
   text-transform: none;
   border-radius: 8px;
+  border: none;
   width: 100%;
   cursor: pointer;
+  transition: opacity .5s ease;
 
   &:hover {
-    background: #535bf2;
+    opacity: 0.7;
   }
 }

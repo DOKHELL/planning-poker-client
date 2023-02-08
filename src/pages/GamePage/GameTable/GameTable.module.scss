@@ -1,0 +1,85 @@
+.gameTable {
+  grid-gap: 1.8rem;
+  overflow-x: auto;
+  @media screen and (min-width: 920px) {
+    display: inline-grid;
+    grid-template-areas:
+        "left top right"
+        "left table right"
+        "left bottom right";
+    grid-template-columns: 10.4rem 1fr 10.4rem;
+    margin: 0 auto;
+    min-height: 200px;
+    width: auto;
+  }
+  @media screen and (max-width: 919px) {
+    display: grid;
+    grid-template-areas:
+        "left top right"
+        "left table right"
+        "left bottom right";
+    grid-template-rows: auto 1fr auto;
+    max-width: 100%;
+    min-height: 38rem;
+  }
+}
+.gameTableSide {
+  align-items: center;
+  display: flex;
+  justify-content: center;
+  grid-gap: 10px;
+}
+.gameTableTop {
+  align-items: stretch;
+  grid-area: top;
+  @media screen and (min-width: 920px) {
+    padding-bottom: 0.8rem;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+  }
+}
+.gameTableLeft {
+  grid-area: left;
+  flex-direction: column-reverse;
+  @media screen and (min-width: 920px) {
+    padding: 8rem 0;
+  }
+}
+.gameTableCenter {
+  @media screen and (min-width: 920px) {
+    background: #d7e9ff;
+    border-radius: 2.8rem;
+    grid-area: table;
+    height: auto;
+    margin: 0 auto;
+    min-height: 15.1rem;
+    min-width: 33.8rem;
+    padding: 0 1.6rem;
+    position: relative;
+    width: 100%;
+  }
+  @media screen and (max-width: 919px) {
+    background: #d7e9ff;
+    border-radius: 2.8rem;
+    grid-area: table;
+    min-width: 16rem;
+    padding: 0 1.6rem;
+    position: relative;
+  }
+}
+.gameTableRight {
+  grid-area: right;
+  flex-direction: column-reverse;
+  @media screen and (min-width: 920px) {
+    padding: 8rem 0;
+  }
+}
+.gameTableBottom {
+  align-items: stretch;
+  grid-area: bottom;
+  @media screen and (min-width: 920px) {
+    align-items: flex-start;
+    padding: 1.2rem 0 0.4rem;
+  }
+}

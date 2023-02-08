@@ -1,15 +1,16 @@
 import React from 'react'
-import styles from './Input.module.scss'
 import classNames from 'classnames'
 import { UseFormRegisterReturn } from 'react-hook-form'
+import styles from './Input.module.scss'
 
 export interface InputProps {
   id: string
   type?: string
   name: string
   placeholder: string
+  className?: string
   value?: string | number
-  label: string
+  label?: string
   onChange?: (e: React.ChangeEvent<HTMLInputElement>) => void
   disabled?: boolean
   formRegister?: UseFormRegisterReturn
@@ -20,16 +21,16 @@ const Input = (props: InputProps) => {
     id,
     name,
     value,
+    className,
     formRegister,
     onChange = () => undefined,
     type = 'text',
-    label = 'Input',
     placeholder = 'Enter Text',
     disabled = false
   } = props
 
   return (
-    <div className={classNames(styles.textField, styles.textFieldFloating)}>
+    <div className={classNames(styles.textField, styles.textFieldFloating, className)}>
       <input
         className={styles.textFieldInput}
         name={name}
@@ -41,7 +42,6 @@ const Input = (props: InputProps) => {
         disabled={disabled}
         {...formRegister}
       />
-      <label className={styles.textFieldLabel} htmlFor={id}>{label}</label>
     </div>
   )
 }

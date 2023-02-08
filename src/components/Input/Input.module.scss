@@ -11,16 +11,18 @@
 .textFieldInput {
   display: block;
   width: 100%;
-  height: 48px;
-  padding: 4px 8px;
+  padding: 12px;
   font-family: inherit;
-  font-size: 18px;
+  font-size: 16px;
   font-weight: 400;
   line-height: 1.5;
-  color: #212529;
+  color: #1a2935;
   background-color: #fff;
   background-clip: padding-box;
-  border: 1px solid #bdbdbd;
+  border-width: 2px;
+  border-style: solid;
+  border-color: #e8e9ea;
+  outline: none;
   border-radius: 2px;
   transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   -webkit-appearance: none;
@@ -37,15 +39,17 @@
 
 .textFieldInput::placeholder {
   color: #212529;
+  font-size: 14px;
+  line-height: 1;
   opacity: 0.4;
 }
 
 .textFieldInput:focus {
-  color: #212529;
-  background-color: #fff;
-  border-color: #bdbdbd;
-  outline: 0;
-  box-shadow: 0 0 0 0.2rem rgba(158, 158, 158, 0.25);
+  border-color: #3993ff;
+  //color: #212529;
+  //background-color: #fff;
+  //border-color: #bdbdbd;
+  //outline: 0;
 }
 
 .textFieldInput:disabled,
@@ -57,50 +61,4 @@
 /* with floating label */
 .textFieldFloating {
   position: relative;
-}
-
-.textFieldFloating .textFieldLabel {
-  height: 48px;
-  line-height: 1.25;
-  padding: 4px 8px;
-}
-
-.textFieldFloating .textFieldLabel {
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  padding: 14px 8px;
-  pointer-events: none;
-  border: 1px solid transparent;
-  transform-origin: 0 0;
-  transition: opacity .15s ease-in-out, transform .15s ease-in-out;
-}
-
-.textFieldFloating .textFieldInput::-moz-placeholder {
-  color: transparent;
-}
-
-.textFieldFloating .textFieldInput::placeholder {
-  color: transparent;
-}
-
-.textFieldFloating .textFieldInput:focus::-moz-placeholder{
-  color: unset;
-}
-
-.textFieldFloating .textFieldInput:focus::placeholder{
-  color: unset;
-}
-
-.textFieldFloating .textFieldInput:focus,
-.textFieldFloating .textFieldInput:not(:placeholder-shown) {
-  padding-top: 1.625rem;
-  padding-bottom: .625rem;
-}
-
-.textFieldFloating .textFieldInput:focus~.textFieldLabel,
-.textFieldFloating .textFieldInput:not(:placeholder-shown)~.textFieldLabel {
-  opacity: .65;
-  transform: scale(.85) translateY(-.75rem) translateX(.15rem);
 }

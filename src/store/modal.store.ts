@@ -12,7 +12,9 @@ interface ModalState {
   confirmBtnText?: string
   cancelBtnText?: string
   maxWidth?: number
-  children?: React.ReactNode
+  canClose?: boolean
+  children?: React.ReactNode,
+  customChildren?: (() => JSX.Element) | null
 }
 
 interface ModalStore {
@@ -31,6 +33,7 @@ const defaultState = (): ModalState => ({
   cancelBtnText: '',
   maxWidth: 560,
   children: null,
+  canClose: true,
 })
 
 export const modalStore = proxy<ModalStore>({

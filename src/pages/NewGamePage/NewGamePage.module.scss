@@ -1,0 +1,19 @@
+.newGamePage {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+.newGamePageContainer {
+  display: grid;
+  max-width: 66.666667%;
+  width: 100%;
+}
+.newGamePageHead {
+  text-align: center;
+  margin-bottom: 50px;
+  font-size: 18px;
+}
+.newGamePageInput {
+  margin-bottom: 30px;
+}

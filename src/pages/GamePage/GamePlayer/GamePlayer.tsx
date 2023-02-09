@@ -1,4 +1,3 @@
-import { memo } from 'react'
 import classNames from 'classnames'
 import { useGameStore, User } from '@/store/game.store'
 import styles from './GamePlayer.module.scss'
@@ -28,4 +27,4 @@ const GamePlayer = ({ user }: GamePlayerProps) => {
   )
 }
 
-export default memo(GamePlayer)
+export default GamePlayer

@@ -163,7 +163,6 @@ export const connectToWS = (id: string | undefined, user: GoogleUser | null | un
       break
     case 'update-card':
       if (gameStore.showResult) return
-      console.log('update-card update-card update-card pdate-card')
       setData(msg.data, user?.uid)
       break
     case 'result':

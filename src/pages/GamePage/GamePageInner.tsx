@@ -1,8 +1,8 @@
-import React, { useEffect, memo } from 'react'
+import React, { useEffect } from 'react'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import { useParams } from 'react-router-dom'
 import { GoogleAuthProvider, signInWithPopup } from 'firebase/auth'
-import { connectToWS, getUsers } from '@/store/game.store'
+import { connectToWS, disconnectFromSoket, getUsers, setGoogleUserData, setSessionId } from '@/store/game.store'
 import { resetState, showModal } from '@/store/modal.store'
 import GameTable from '@/pages/GamePage/GameTable/GameTable'
 import GamePageBottomSection from '@/pages/GamePage/GamePageBottomSection/GamePageBottomSection'
@@ -17,12 +17,16 @@ const GamePageInner = () => {
     const provider = new GoogleAuthProvider()
     const { user } = await signInWithPopup(db.auth, provider)
     if (user) {
+      setGoogleUserData(user)
+      setSessionId(id)
       resetState()
     }
   }
 
   useEffect(() => {
     if (user) {
+      setGoogleUserData(user)
+      setSessionId(id)
       connectToWS(id, user)
     } else {
       getUsers(id)
@@ -34,6 +38,10 @@ const GamePageInner = () => {
         onConfirm: login,
         confirmBtnText: 'Login By Google',
       })
+    }
+    return () => {
+      console.log('Disconnected')
+      disconnectFromSoket('leave')
     }
   }, [ user ])
 
@@ -47,4 +55,4 @@ const GamePageInner = () => {
   )
 }
 
-export default memo(GamePageInner)
+export default GamePageInner

@@ -1,5 +1,5 @@
 import { AxiosError } from 'axios'
-import { ErrorResponse } from '@/@types/error'
+import { ErrorResponse } from '@/@types'
 
 export const getError = (e: AxiosError): ErrorResponse => ({
   status: String(e.response?.status),

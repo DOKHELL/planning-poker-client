@@ -15,6 +15,5 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig)
 const auth = getAuth(app)
 const firestore = getFirestore(app)
-// Write a string when this client loses connection
-// onDisconnect(presenceRef).set('I disconnected!')
+
 export default { app, auth, firestore }

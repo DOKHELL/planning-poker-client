@@ -20,6 +20,8 @@ export type Response = {
 export type GameStore = {
   users: User[];
   userData: User;
+  sessionId: string;
+  googleUserData: GoogleUser | null | undefined;
   showResult: boolean
 }
 
@@ -28,6 +30,8 @@ let savedSoket: WebSocket
 export const gameStore = proxy<GameStore>({
   users: [],
   showResult: false,
+  sessionId: '',
+  googleUserData: null,
   userData: {
     username: '',
     card: '',
@@ -40,6 +44,14 @@ export const gameStore = proxy<GameStore>({
 
 export const isAnyoneChooseCard = () => {
   return gameStore.users.some((user) => user.card)
+}
+
+export const setSessionId = (id: string | undefined) => {
+  gameStore.sessionId = id || ''
+}
+
+export const setGoogleUserData = (user: GoogleUser | null | undefined) => {
+  gameStore.googleUserData = user || null
 }
 
 export const updateCard = (userId: string | undefined, card: string) => {
@@ -143,7 +155,9 @@ export const connectToWS = (id: string | undefined, user: GoogleUser | null | un
 
   socket.onclose = (data) => {
     if ([ 'leave', 'logout' ].includes(data?.reason)) return
-    socket.send(JSON.stringify(payload))
+    if (gameStore.sessionId && gameStore.googleUserData) {
+      connectToWS(gameStore.sessionId, gameStore.googleUserData)
+    }
   }
 
   socket.onopen = () => {

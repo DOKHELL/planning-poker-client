@@ -1,27 +1,18 @@
-import { memo } from 'react'
 import classNames from 'classnames'
-import { useGameStore } from '@/store/game.store'
 import GamePlayer from '@/pages/GamePage/GamePlayer/GamePlayer'
 import GameCenterBox from '@/pages/GamePage/GameCenterBox/GameCenterBox'
 import styles from './GameTable.module.scss'
+import useTableData from '@/hooks/useTableData'
 
 const GameTable = () => {
-  const { users = [] } = useGameStore()
-  const filterUsers = users?.filter((user) => user.active) || []
-  const startBottom = 0
-  const endBottom = Math.ceil(filterUsers?.length * 0.3)
-  const startTop = endBottom
-  const endTop = endBottom + endBottom
-  const startLeft = endTop
-  const endLeft = Math.ceil(((filterUsers?.length - (endTop + 1)) / 2)) + endTop
-  const startRight = endLeft
-  const endRight = (filterUsers?.length - endLeft) + endLeft
+  const { bottomUsers, topUsers, leftUsers, rightUsers } = useTableData()
+
   return (
     <div className={styles.gameTable}>
       <div/>
       <div className={classNames(styles.gameTableTop, styles.gameTableSide)}>
         {
-          filterUsers.slice(startTop, endTop).map((user) => {
+          topUsers?.map((user) => {
             return <GamePlayer user={user} key={user.userId} />
           })
         }
@@ -29,7 +20,7 @@ const GameTable = () => {
       <div/>
       <div className={classNames(styles.gameTableLeft, styles.gameTableSide)}>
         {
-          filterUsers.slice(startLeft, endLeft).map((user) => {
+          leftUsers?.map((user) => {
             return <GamePlayer user={user} key={user.userId} />
           })
         }
@@ -39,7 +30,7 @@ const GameTable = () => {
       </div>
       <div className={classNames(styles.gameTableRight, styles.gameTableSide)}>
         {
-          filterUsers.slice(startRight, endRight).map((user) => {
+          rightUsers?.map((user) => {
             return <GamePlayer user={user} key={user.userId} />
           })
         }
@@ -47,7 +38,7 @@ const GameTable = () => {
       <div/>
       <div className={classNames(styles.gameTableBottom, styles.gameTableSide)}>
         {
-          filterUsers.slice(startBottom, endBottom).map((user) => {
+          bottomUsers?.map((user) => {
             return <GamePlayer user={user} key={user.userId} />
           })
         }
@@ -57,4 +48,4 @@ const GameTable = () => {
   )
 }
 
-export default memo(GameTable)
+export default GameTable

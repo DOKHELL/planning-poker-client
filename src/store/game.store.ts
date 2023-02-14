@@ -21,7 +21,11 @@ export type GameStore = {
   users: User[];
   userData: User;
   sessionId: string;
-  googleUserData: GoogleUser | null | undefined;
+  googleUserData: {
+    uid: string | undefined;
+    displayName: string | null | undefined;
+    photoURL: string | null | undefined;
+  };
   showResult: boolean
 }
 
@@ -31,7 +35,11 @@ export const gameStore = proxy<GameStore>({
   users: [],
   showResult: false,
   sessionId: '',
-  googleUserData: null,
+  googleUserData: {
+    uid: '',
+    displayName: '',
+    photoURL: '',
+  },
   userData: {
     username: '',
     card: '',
@@ -51,7 +59,11 @@ export const setSessionId = (id: string | undefined) => {
 }
 
 export const setGoogleUserData = (user: GoogleUser | null | undefined) => {
-  gameStore.googleUserData = user || null
+  gameStore.googleUserData = {
+    uid: user?.uid,
+    displayName: user?.displayName,
+    photoURL: user?.photoURL,
+  }
 }
 
 export const updateCard = (userId: string | undefined, card: string) => {
@@ -156,6 +168,7 @@ export const connectToWS = (id: string | undefined, user: GoogleUser | null | un
   socket.onclose = (data) => {
     if ([ 'leave', 'logout' ].includes(data?.reason)) return
     if (gameStore.sessionId && gameStore.googleUserData) {
+      //@ts-ignore
       connectToWS(gameStore.sessionId, gameStore.googleUserData)
     }
   }

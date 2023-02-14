@@ -24,6 +24,13 @@ const GamePageInner = () => {
   }
 
   useEffect(() => {
+    return () => {
+      console.log('Disconnected')
+      disconnectFromSoket('leave')
+    }
+  }, [])
+
+  useEffect(() => {
     if (user) {
       setGoogleUserData(user)
       setSessionId(id)
@@ -38,10 +45,6 @@ const GamePageInner = () => {
         onConfirm: login,
         confirmBtnText: 'Login By Google',
       })
-    }
-    return () => {
-      console.log('Disconnected')
-      disconnectFromSoket('leave')
     }
   }, [ user ])
 

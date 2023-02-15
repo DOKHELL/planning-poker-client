@@ -5,7 +5,13 @@
   align-items: center;
   justify-content: space-between;
   padding: 24px;
+  grid-gap: 15px;
   box-sizing: border-box;
+  @media screen and (max-width: 520px) {
+    flex-wrap: wrap;
+    height: auto;
+    justify-content: center;
+  }
 }
 
 .logo {
@@ -15,6 +21,9 @@
   grid-gap: 20px;
   font-size: 22px;
   font-weight: 700;
+  @media screen and (max-width: 520px) {
+    max-width: 100%;
+  }
 }
 
 .headerButtons {
@@ -23,6 +32,9 @@
   grid-gap: 20px;
   max-width: 300px;
   width: 100%;
+  @media screen and (max-width: 520px) {
+    max-width: 100%;
+  }
 }
 
 .logoutBtn {

@@ -17,7 +17,7 @@ const NewGamePage = () => {
     <div className={styles.newGamePage}>
       <div className={styles.newGamePageContainer}>
         <div className={styles.newGamePageHead}>Choose a name for your game.</div>
-        <Input maxLength={14} onChange={handleNameChange} value={name} className={styles.newGamePageInput} id="game-name" name="name" placeholder="Game's name"/>
+        <Input maxLength={24} onChange={handleNameChange} value={name} className={styles.newGamePageInput} id="game-name" name="name" placeholder="Game's name"/>
         <Button disabled={name.length < 3} text="Create game" onClick={handlePushAutoCall(START_GAME(name))}/>
       </div>
     </div>

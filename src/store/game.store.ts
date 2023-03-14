@@ -154,7 +154,7 @@ export const setData = (data: Response, uid: string | undefined) => {
 }
 
 export const connectToWS = (id: string | undefined, user: GoogleUser | null | undefined) => {
-  const socket = new WebSocket('wss://vmi854506.contaboserver.net:5003/')
+  const socket = new WebSocket('wss://45.67.231.4:5003/')
   savedSoket = socket
   const payload = {
     sessionId: id,
